@@ -7,9 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{94
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{7CB747E9-E953-4406-B2EE-73BB9F3C318B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroStruct.Web", "FrontEnd\MicroStruct.Web\MicroStruct.Web.csproj", "{0986BC45-0E56-400B-9B4D-29C8DA20A3F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroStruct.Web", "FrontEnd\MicroStruct.Web\MicroStruct.Web.csproj", "{0986BC45-0E56-400B-9B4D-29C8DA20A3F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroStruct.Services.Identity", "Services\MicroStruct.Services.Identity\MicroStruct.Services.Identity.csproj", "{65A25329-2FE3-4119-A3F1-DA334A6FEDB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroStruct.Services.Identity", "Services\MicroStruct.Services.Identity\MicroStruct.Services.Identity.csproj", "{65A25329-2FE3-4119-A3F1-DA334A6FEDB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroStruct.Services.Workflow", "MicroStruct.Services.Workflow\MicroStruct.Services.Workflow.csproj", "{FDC194C6-CDA9-4323-8B38-1FE628AE3D21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{65A25329-2FE3-4119-A3F1-DA334A6FEDB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65A25329-2FE3-4119-A3F1-DA334A6FEDB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65A25329-2FE3-4119-A3F1-DA334A6FEDB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC194C6-CDA9-4323-8B38-1FE628AE3D21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC194C6-CDA9-4323-8B38-1FE628AE3D21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC194C6-CDA9-4323-8B38-1FE628AE3D21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC194C6-CDA9-4323-8B38-1FE628AE3D21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0986BC45-0E56-400B-9B4D-29C8DA20A3F5} = {94DAD28A-AF7A-485E-8A83-4E520563AD4C}
 		{65A25329-2FE3-4119-A3F1-DA334A6FEDB2} = {7CB747E9-E953-4406-B2EE-73BB9F3C318B}
+		{FDC194C6-CDA9-4323-8B38-1FE628AE3D21} = {7CB747E9-E953-4406-B2EE-73BB9F3C318B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6537B14C-FBF9-4A68-A861-E6C7D29CD10B}

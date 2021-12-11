@@ -1,7 +1,34 @@
+using Microsoft.AspNetCore.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
+var provider = builder.Services.BuildServiceProvider();
+var configuration = provider.GetRequiredService<IConfiguration>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultScheme = "Cookies";
+        options.DefaultChallengeScheme = "oidc";
+    })
+  .AddCookie("Cookies", c => c.ExpireTimeSpan = TimeSpan.FromMinutes(10))
+  .AddOpenIdConnect("oidc", options =>
+  {
+      options.Authority = configuration["ServiceUrls:IdentityAPI"];
+      options.GetClaimsFromUserInfoEndpoint = true;
+      options.ClientId = "microstruct";
+      options.ClientSecret = "secret";
+      options.ResponseType = "code";
+      options.ClaimActions.MapJsonKey("role", "role", "role");
+      options.ClaimActions.MapJsonKey("sub", "sub", "sub");
+      options.TokenValidationParameters.NameClaimType = "name";
+      options.TokenValidationParameters.RoleClaimType = "role";
+      options.Scope.Add("microstruct");
+      options.SaveTokens = true;
+
+  });
+
 
 var app = builder.Build();
 
@@ -17,7 +44,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
