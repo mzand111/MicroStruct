@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MicroStruct.Services.Workflow.Models.Dtos;
+using MicroStruct.Services.WorkflowApi.Models.Dtos;
 
-namespace MicroStruct.Services.Workflow.Controllers
+namespace MicroStruct.Services.WorkflowApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

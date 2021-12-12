@@ -1,4 +1,4 @@
-﻿namespace MicroStruct.Services.Workflow.Models.Dtos
+﻿namespace MicroStruct.Services.WorkflowApi.Models.Dtos
 {
     public class WorkflowDto
     {
