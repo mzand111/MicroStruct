@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroStruct.Services.Identi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroStruct.Services.Workflow", "MicroStruct.Services.Workflow\MicroStruct.Services.Workflow.csproj", "{FDC194C6-CDA9-4323-8B38-1FE628AE3D21}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{547AAB3A-5005-4500-942A-C1D93DA19E85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
