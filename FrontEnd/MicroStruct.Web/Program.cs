@@ -1,12 +1,44 @@
 using Microsoft.AspNetCore.Authentication;
 using MicroStruct.Web.Config;
+using MicroStruct.Web.Services;
+using Serilog;
+using Serilog.Context;
+using Serilog.Events;
+using Serilog.Sinks.MSSqlServer;
+using System.Collections.ObjectModel;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
 
+
+string loggerConnectionString = configuration.GetConnectionString("SeriLogDB");
+
+var columnOptions = new ColumnOptions
+{
+    AdditionalColumns = new Collection<SqlColumn>
+                   {
+                       new SqlColumn("UserName", SqlDbType.VarChar),
+                        new SqlColumn("IP", SqlDbType.VarChar),
+                        new SqlColumn("UserActionID", SqlDbType.Int),
+                        new SqlColumn("SystemActionID", SqlDbType.Int),
+                   }
+}; //through this coulmnsOptions we can dynamically  add custom columns which we want to add in database  
+
+
+
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .Enrich.WithClientIp()
+    .Enrich.WithClientAgent()
+    .WriteTo.MSSqlServer(loggerConnectionString, sinkOptions: new MSSqlServerSinkOptions { TableName = "Log" }
+    , null, null, LogEventLevel.Information, null, columnOptions: columnOptions, null, null)
+    .CreateLogger();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IWorkflowService,WorkflowService>();
 builder.Services
     .AddAuthentication(options =>
     {
@@ -30,6 +62,7 @@ builder.Services
 
   });
 builder.Services.Configure<ServiceUrls>(configuration.GetSection("ServiceUrls"));
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 
@@ -46,7 +79,25 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
+app.Use(async (httpContext, next) =>
+{
+    var userName = "-";
+    var client = "-";
+    if (httpContext != null)
+    {
+        userName = httpContext.User.Identity.IsAuthenticated ? httpContext.User.Identity.Name : "anonymous"; //Gets user Name from user Identity  
+        client = httpContext.Connection.RemoteIpAddress.ToString() ?? "unknown";
+    }
+    LogContext.PushProperty("UserName", userName); //Push user in LogContext;  
+    LogContext.PushProperty("IP", client); //Push user in LogContext;  
+    
+
+    await next.Invoke();
+}
+            );
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
     name: "default",
