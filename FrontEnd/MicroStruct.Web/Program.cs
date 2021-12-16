@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication;
+using MicroStruct.Web.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 var provider = builder.Services.BuildServiceProvider();
@@ -28,7 +29,7 @@ builder.Services
       options.SaveTokens = true;
 
   });
-
+builder.Services.Configure<ServiceUrls>(configuration.GetSection("ServiceUrls"));
 
 var app = builder.Build();
 
