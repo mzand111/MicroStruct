@@ -7,6 +7,7 @@ namespace MicroStruct.Services.WorkflowApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class WorkflowController : ControllerBase
     {
         [Authorize]
