@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using MicroStruct.Web.Config;
+using MicroStruct.Web.Library.Middlewares;
 using MicroStruct.Web.Services;
 using Serilog;
 using Serilog.Context;
@@ -33,7 +34,7 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .Enrich.WithClientIp()
     .Enrich.WithClientAgent()
-    .Enrich.WithExceptionDetails()
+    //.Enrich.WithExceptionDetails()
     .WriteTo.MSSqlServer(loggerConnectionString, sinkOptions: new MSSqlServerSinkOptions { TableName = "Log" }
     , null, null, LogEventLevel.Information, null, columnOptions: columnOptions, null, null)
     .CreateLogger();
@@ -67,13 +68,19 @@ builder.Services.Configure<ServiceUrls>(configuration.GetSection("ServiceUrls"))
 builder.Host.UseSerilog();
 
 var app = builder.Build();
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    //app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+else
+{
+    //app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
@@ -98,7 +105,6 @@ app.Use(async (httpContext, next) =>
 }
             );
 app.UseAuthorization();
-
 
 
 app.MapControllerRoute(
