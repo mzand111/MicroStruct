@@ -4,6 +4,7 @@ using MicroStruct.Web.Services;
 using Serilog;
 using Serilog.Context;
 using Serilog.Events;
+using Serilog.Exceptions;
 using Serilog.Sinks.MSSqlServer;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -21,8 +22,8 @@ var columnOptions = new ColumnOptions
                    {
                        new SqlColumn("UserName", SqlDbType.VarChar),
                         new SqlColumn("IP", SqlDbType.VarChar),
-                        new SqlColumn("UserActionID", SqlDbType.Int),
-                        new SqlColumn("SystemActionID", SqlDbType.Int),
+                        new SqlColumn("UserActionId", SqlDbType.Int),
+                        new SqlColumn("SystemActionId", SqlDbType.Int),
                    }
 }; //through this coulmnsOptions we can dynamically  add custom columns which we want to add in database  
 
@@ -32,6 +33,7 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .Enrich.WithClientIp()
     .Enrich.WithClientAgent()
+    .Enrich.WithExceptionDetails()
     .WriteTo.MSSqlServer(loggerConnectionString, sinkOptions: new MSSqlServerSinkOptions { TableName = "Log" }
     , null, null, LogEventLevel.Information, null, columnOptions: columnOptions, null, null)
     .CreateLogger();
