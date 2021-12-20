@@ -10,6 +10,7 @@ namespace MicroStruct.Services.WorkflowApi.Controllers
 
     public class WorkflowController : ControllerBase
     {
+       
         [Authorize]
         [HttpGet]
         public IEnumerable<WorkflowDto> GetAll()
