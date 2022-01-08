@@ -1,0 +1,41 @@
+.fc-event {
+	border-radius: .2rem;
+	border: none;
+	cursor: move;
+	font-size: .9rem;
+	margin: .5rem .5rem;
+	padding: .3rem;
+	text-align: center;
+}
+
+.fc .fc-view-container .fc-view table .fc-body .fc-widget-content .fc-day-grid-container .fc-day-grid .fc-row .fc-content-skeleton table .fc-event-container .fc-day-grid-event.fc-event {
+	line-height: 1.3;
+	border-radius: 3px;
+	border-right: unset;
+	border-left: unset;
+	color: #fff;
+	background-color: #1a252f;
+}
+
+.fc-state-default.fc-corner-right {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.fc-state-default.fc-corner-left {
+	margin-right: -1px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.fc .fc-button,
+.swal2-modal .swal2-actions button,
+.wizard>.actions a {
+	color: #fff !important;
+	background-color: #2C3E50 !important;
+	border: 1px solid #2C3E50 !important;
+}
+
+.fc-state-default:hover {
+	background: #1a252f;
+}
