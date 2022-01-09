@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.lang = "fa";
+    ViewBag.lang = "en";
 }
 <html lang="en" dir="@(((string)ViewBag.lang=="fa")?"rtl":"")">
 <head>
@@ -10,9 +10,13 @@
     <link rel="icon" href="/PanelContent/rtl/assets/images/favicon-32x32.png" type="image/png" />
 
     <!--plugins-->
+     <!--plugins-notifications-->
+    <link rel="stylesheet" href="/PanelContent/rtl/assets/plugins/notifications/css/lobibox.min.css" />
 
     <link href="/PanelContent/rtl/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
     <link href="/PanelContent/rtl/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet" />
+
     <link href="/PanelContent/rtl/assets/plugins/smart-wizard/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
 
     <!--plugins-upload-->
@@ -79,56 +83,24 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="component-alerts.html"><i class="bx bx-right-arrow-alt"></i>هشدار</a>
+                            <a href="/Component/ComponentAlerts"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")  "></i>هشدار</a>
                         </li>
                         <li>
-                            <a href="component-accordions.html"><i class="bx bx-right-arrow-alt"></i>آکاردئون</a>
+                            <a href="/Component/ComponentAccordions"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آکاردئون</a>
                         </li>
                         <li>
-                            <a href="component-badges.html"><i class="bx bx-right-arrow-alt"></i>نشان</a>
+                            <a href="/component/ComponentButtons"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>دکمه</a>
                         </li>
                         <li>
-                            <a href="component-buttons.html"><i class="bx bx-right-arrow-alt"></i>دکمه</a>
+                            <a href="/component/ComponentModals"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>مُدال</a>
                         </li>
                         <li>
-                            <a href="component-cards.html"><i class="bx bx-right-arrow-alt"></i>کارت</a>
+                            <a href="/component/ComponentProgressBars"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>نوار پیشرفت</a>
                         </li>
                         <li>
-                            <a href="component-carousels.html"><i class="bx bx-right-arrow-alt"></i>اسلایدر</a>
+                            <a href="/component/ComponentNotifications"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>اعلان ها</a>
                         </li>
-                        <li>
-                            <a href="component-list-groups.html"><i class="bx bx-right-arrow-alt"></i>لیست گروهی</a>
-                        </li>
-                        <li>
-                            <a href="component-media-object.html"><i class="bx bx-right-arrow-alt"></i>اشیاء رسانه</a>
-                        </li>
-                        <li>
-                            <a href="component-modals.html"><i class="bx bx-right-arrow-alt"></i>مُدال</a>
-                        </li>
-                        <li>
-                            <a href="component-navs-tabs.html"><i class="bx bx-right-arrow-alt"></i>تب بندی</a>
-                        </li>
-                        <li>
-                            <a href="component-navbar.html"><i class="bx bx-right-arrow-alt"></i>نوبار</a>
-                        </li>
-                        <li>
-                            <a href="component-paginations.html"><i class="bx bx-right-arrow-alt"></i>صفحه بندی</a>
-                        </li>
-                        <li>
-                            <a href="component-popovers-tooltips.html"><i class="bx bx-right-arrow-alt"></i>پاپ آور و تولتیپ</a>
-                        </li>
-                        <li>
-                            <a href="component-progress-bars.html"><i class="bx bx-right-arrow-alt"></i>نوار پیشرفت</a>
-                        </li>
-                        <li>
-                            <a href="component-spinners.html"><i class="bx bx-right-arrow-alt"></i>اسپینر</a>
-                        </li>
-                        <li>
-                            <a href="component-notifications.html"><i class="bx bx-right-arrow-alt"></i>اعلان ها</a>
-                        </li>
-                        <li>
-                            <a href="component-avtars-chips.html"><i class="bx bx-right-arrow-alt"></i>آواتارها و تراشه ها</a>
-                        </li>
+
                     </ul>
                 </li>
 
@@ -141,13 +113,13 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>آیکون های LineIcons</a>
+                            <a href="/icons/IconsLineIcons"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آیکون های LineIcons</a>
                         </li>
                         <li>
-                            <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>آیکون های Boxicons</a>
+                            <a href="/icons/IconsBoxicons"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آیکون های Boxicons</a>
                         </li>
                         <li>
-                            <a href="icons-feather-icons.html"><i class="bx bx-right-arrow-alt"></i>آیکون های Feather</a>
+                            <a href="/icons/IconsFeatherIcons"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آیکون های Feather</a>
                         </li>
                     </ul>
                 </li>
@@ -161,31 +133,31 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="/home/FormElements"><i class="bx bx-right-arrow-alt"></i>عناصر فرم</a>
+                            <a href="/form/FormElements"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>عناصر فرم</a>
                         </li>
                         <li>
-                            <a href="/home/FormInputGroup"><i class="bx bx-right-arrow-alt"></i>ورودی گروهی</a>
+                            <a href="/form/FormInputGroup"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ورودی گروهی</a>
                         </li>
                         <li>
-                            <a href="/home/FormLayouts"><i class="bx bx-right-arrow-alt"></i>لایه های فرم</a>
+                            <a href="/form/FormLayouts"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>لایه های فرم</a>
                         </li>
                         <li>
-                            <a href="/home/FormValidations"><i class="bx bx-right-arrow-alt"></i>اعتبارسنجی فرم</a>
+                            <a href="/form/FormValidations"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>اعتبارسنجی فرم</a>
                         </li>
                         <li>
-                            <a href="/home/FormWizard"><i class="bx bx-right-arrow-alt"></i>فرم حرفه ای</a>
+                            <a href="/form/FormWizard"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>فرم حرفه ای</a>
                         </li>
                         <li>
-                            <a href="/home/FormTextEditor"><i class="bx bx-right-arrow-alt"></i>ویرایشگر متن</a>
+                            <a href="/form/FormTextEditor"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ویرایشگر متن</a>
                         </li>
                         <li>
-                            <a href="/home/FormFileUpload"><i class="bx bx-right-arrow-alt"></i>آپلود فایل</a>
+                            <a href="/form/FormFileUpload"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آپلود فایل</a>
                         </li>
                         <li>
-                            <a href="/home/FormDateTimePickes"><i class="bx bx-right-arrow-alt"></i>انتخابگر تاریخ</a>
+                            <a href="/form/FormDateTimePickes"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>انتخابگر تاریخ</a>
                         </li>
                         <li>
-                            <a href="/home/FormSelect2"><i class="bx bx-right-arrow-alt"></i>انتخاب 2</a>
+                            <a href="/form/FormSelect2"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>انتخاب 2</a>
                         </li>
                     </ul>
                 </li>
@@ -198,10 +170,10 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="/home/TableBasic"><i class="bx bx-right-arrow-alt"></i>جدول پایه</a>
+                            <a href="/Table/TableBasic"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>جدول پایه</a>
                         </li>
                         <li>
-                            <a href="/home/TableDatatable"><i class="bx bx-right-arrow-alt"></i>جدول داده</a>
+                            <a href="/Table/TableDatatable"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>جدول داده</a>
                         </li>
                     </ul>
                 </li>
@@ -215,30 +187,30 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="authentication-signin.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>ورود</a>
+                            <a href="authentication-signin.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ورود</a>
                         </li>
                         <li>
-                            <a href="authentication-signup.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>ثبت نام</a>
+                            <a href="authentication-signup.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ثبت نام</a>
                         </li>
                         <li>
-                            <a href="authentication-signin-with-header-footer.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>ورود با هدر و فوتر</a>
+                            <a href="authentication-signin-with-header-footer.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ورود با هدر و فوتر</a>
                         </li>
                         <li>
-                            <a href="authentication-signup-with-header-footer.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>ثبت نام با هدر و فوتر</a>
+                            <a href="authentication-signup-with-header-footer.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ثبت نام با هدر و فوتر</a>
                         </li>
                         <li>
-                            <a href="authentication-forgot-password.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>فراموشی رمز عبور</a>
+                            <a href="authentication-forgot-password.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>فراموشی رمز عبور</a>
                         </li>
                         <li>
-                            <a href="authentication-reset-password.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>بازنشانی رمز عبور</a>
+                            <a href="authentication-reset-password.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>بازنشانی رمز عبور</a>
                         </li>
                         <li>
-                            <a href="authentication-lock-screen.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>صفحه قفل</a>
+                            <a href="authentication-lock-screen.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>صفحه قفل</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="user-profile.html">
+                    <a href="/home/UserProfile">
                         <div class="parent-icon">
                             <i class='bx bx-user-pin'></i>
                         </div>
@@ -254,16 +226,16 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="errors-404-error.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>خطای 404</a>
+                            <a href="errors-404-error.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>خطای 404</a>
                         </li>
                         <li>
-                            <a href="errors-500-error.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>خطای 500</a>
+                            <a href="errors-500-error.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>خطای 500</a>
                         </li>
                         <li>
-                            <a href="errors-coming-soon.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>صفحه به زودی</a>
+                            <a href="errors-coming-soon.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>صفحه به زودی</a>
                         </li>
                         <li>
-                            <a href="error-blank-page.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>صفحه خالی</a>
+                            <a href="error-blank-page.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>صفحه خالی</a>
                         </li>
                     </ul>
                 </li>
@@ -813,6 +785,11 @@
 	<script src="/PanelContent/rtl/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js"></script>
 
     <script src="/PanelContent/rtl/assets/plugins/select2/js/select2.min.js"></script>
+
+    <!--notification js -->
+	<script src="/PanelContent/rtl/assets/plugins/notifications/js/lobibox.min.js"></script>
+	<script src="/PanelContent/rtl/assets/plugins/notifications/js/notifications.min.js"></script>
+	<script src="/PanelContent/rtl/assets/plugins/notifications/js/notification-custom-script.js"></script>
 
      <!--end plugins-->
 

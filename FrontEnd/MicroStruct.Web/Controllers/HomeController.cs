@@ -19,58 +19,8 @@ namespace MicroStruct.Web.Controllers
         {
             return View();
         }
-
-        public IActionResult TableBasic()
-        {
-            return View();
-        }
-
-        public IActionResult TableDatatable()
-        {
-            return View();
-        }
-
-        public IActionResult FormElements()
-        {
-            return View();
-        }
-
-        public IActionResult FormInputGroup()
-        {
-            return View();
-        }
-
-        public IActionResult FormLayouts()
-        {
-            return View();
-        }
-
-        public IActionResult FormValidations()
-        {
-            return View();
-        }
-
-        public IActionResult FormWizard()
-        {
-            return View();
-        }
-
-        public IActionResult FormTextEditor()
-        {
-            return View();
-        }
-
-        public IActionResult FormFileUpload()
-        {
-            return View();
-        }
-
-        public IActionResult FormDateTimePickes()
-        {
-            return View();
-        }
-
-        public IActionResult FormSelect2()
+     
+        public IActionResult UserProfile()
         {
             return View();
         }
