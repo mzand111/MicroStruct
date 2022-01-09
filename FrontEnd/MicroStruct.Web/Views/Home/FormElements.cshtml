@@ -1,0 +1,343 @@
+﻿@{
+    ViewData["Title"] = "FormElements";
+}
+
+<!--breadcrumb-->
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3">فرم ها</div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">عناصر فرم</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="ms-auto">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary">تنظیمات</button>
+							<button type="button"
+								class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
+								data-bs-toggle="dropdown"> <span class="visually-hidden">فهرست کشویی</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a
+									class="dropdown-item" href="javascript:;">عمل</a>
+								<a class="dropdown-item" href="javascript:;">عمل دیگر</a>
+								<a class="dropdown-item" href="javascript:;">هر چیز دیگر اینجا</a>
+								<div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">لینک
+									جدا کننده</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end breadcrumb-->
+				<div class="row">
+					<div class="col">
+						<div class="card">
+							<div class="card-body">
+								<h6 class="mb-0 text-uppercase">ورودی متن</h6>
+								<hr />
+								<input class="form-control form-control-lg mb-3" type="text" placeholder="ورودی بزرگ"
+									aria-label="مثال ورودی بزرگ">
+								<input class="form-control mb-3" type="text" placeholder="ورودی پیش فرض"
+									aria-label="مثال ورودی پیش فرض">
+								<input class="form-control form-control-sm mb-3" type="text" placeholder="ورودی کوچک"
+									aria-label="مثال ورودی کوچک">
+								<input class="form-control mb-3" type="text" placeholder="ورودی غیرفعال"
+									aria-label="مثال ورودی غیرفعال" disabled>
+								<input class="form-control mb-3" type="text" placeholder="ورودی غیرفعال فقط خواندنی"
+									aria-label="مثال ورودی غیرفعال" disabled readonly>
+								<input class="form-control" type="text" placeholder="ورودی فقط خواندنی ..."
+									aria-label="مثال ورودی فقط خواندنی" readonly>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<h6 class="mb-0 text-uppercase">ورودی انتخاب</h6>
+								<hr />
+								<select class="form-select mb-3" aria-label="مثال ورودی انتخاب پیش فرض">
+									<option selected>باز کردن فهرست انتخاب</option>
+									<option value="1">یک</option>
+									<option value="2">دو</option>
+									<option value="3">سه</option>
+								</select>
+								<select class="form-select form-select-lg mb-3" aria-label="مثال ورودی انتخاب بزرگ">
+									<option selected>باز کردن فهرست انتخاب</option>
+									<option value="1">یک</option>
+									<option value="2">دو</option>
+									<option value="3">سه</option>
+								</select>
+								<select class="form-select form-select-sm mb-3" aria-label="مثال ورودی انتخاب کوچک">
+									<option selected>باز کردن فهرست انتخاب</option>
+									<option value="1">یک</option>
+									<option value="2">دو</option>
+									<option value="3">سه</option>
+								</select>
+								<select class="form-select" aria-label="مثال ورودی انتخاب غیرفعال" disabled>
+									<option selected>باز کردن فهرست انتخاب</option>
+									<option value="1">یک</option>
+									<option value="2">دو</option>
+									<option value="3">سه</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<h6 class="mb-0 text-uppercase">ورودی فایل</h6>
+								<hr />
+								<div class="mb-3">
+									<label for="formFile" class="form-label">مثال ورودی فایل پیش فرض</label>
+									<input class="form-control" type="file" id="formFile">
+								</div>
+								<div class="mb-3">
+									<label for="formFileMultiple" class="form-label">مثال ورودی فایل چند تایی</label>
+									<input class="form-control" type="file" id="formFileMultiple" multiple>
+								</div>
+								<div class="mb-3">
+									<label for="formFileDisabled" class="form-label">مثال ورودی فایل غیرفعال</label>
+									<input class="form-control" type="file" id="formFileDisabled" disabled>
+								</div>
+								<div class="mb-3">
+									<label for="formFileSm" class="form-label">مثال ورودی فایل کوچک</label> <input
+										class="form-control form-control-sm" id="formFileSm" type="file">
+								</div>
+								<div>
+									<label for="formFileLg" class="form-label">مثال ورودی فایل بزرگ</label> <input
+										class="form-control form-control-lg" id="formFileLg" type="file">
+								</div>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<h6 class="mb-0 text-uppercase">لیست داده</h6>
+								<hr />
+								<label for="exampleDataList" class="form-label">مثال پیش فرض</label>
+								<input class="form-control" list="datalistOptions" id="exampleDataList"
+									placeholder="جستجو ...">
+								<datalist id="datalistOptions">
+									<option value="تهران"></option>
+									<option value="مشهد"></option>
+									<option value="تبریز"></option>
+									<option value="شیراز"></option>
+									<option value="اصفهان"></option>
+								</datalist>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<h6 class="mb-0 text-uppercase">چک باکس و دکمه های رادیویی</h6>
+								<hr />
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+									<label class="form-check-label" for="flexCheckDefault">چک باکس پیش فرض</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+										checked>
+									<label class="form-check-label" for="flexCheckChecked">چک باکس انتخاب شده</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value=""
+										id="flexCheckIndeterminate">
+									<label class="form-check-label" for="flexCheckIndeterminate">چک باکس نامشخص
+									</label> </div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled"
+										disabled>
+									<label class="form-check-label" for="flexCheckDisabled">چک باکس غیرفعال
+									</label> </div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value=""
+										id="flexCheckCheckedDisabled" checked disabled>
+									<label class="form-check-label" for="flexCheckCheckedDisabled">چک باکس انتخاب شده
+										غیرفعال</label>
+								</div>
+								<hr />
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="flexRadioDefault"
+										id="flexRadioDefault1">
+									<label class="form-check-label" for="flexRadioDefault1">دکمه رادیویی پیش فرض</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="flexRadioDefault"
+										id="flexRadioDefault2" checked>
+									<label class="form-check-label" for="flexRadioDefault2">دکمه رادیویی پیش فرض
+										انتخاب شده</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="flexRadioDisabled"
+										id="flexRadioDisabled" disabled>
+									<label class="form-check-label" for="flexRadioDisabled">دکمه رادیویی غیرفعال</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="flexRadioDisabled"
+										id="flexRadioCheckedDisabled" checked disabled>
+									<label class="form-check-label" for="flexRadioCheckedDisabled">دکمه رادیویی انتخاب
+										شده غیرفعال
+									</label> </div>
+								<hr />
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+									<label class="form-check-label" for="flexSwitchCheckDefault">ورودی چک باکس سوئیچ پیش
+										فرض</label>
+								</div>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+									<label class="form-check-label" for="flexSwitchCheckChecked">ورودی چک باکس سوئیچ
+										انتخاب شده</label>
+								</div>
+								<div class="form-check-danger form-check form-switch">
+									<input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDanger"
+										checked>
+									<label class="form-check-label" for="flexSwitchCheckCheckedDanger">ورودی چک باکس
+										سوئیچ انتخاب شده</label>
+								</div>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled"
+										disabled>
+									<label class="form-check-label" for="flexSwitchCheckDisabled">ورودی چک باکس سوئیچ
+										غیرفعال</label>
+								</div>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled"
+										checked disabled>
+									<label class="form-check-label" for="flexSwitchCheckCheckedDisabled">ورودی چک باکس
+										سوئیچ انتخاب شده غیرفعال</label>
+								</div>
+								<hr />
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+										value="option1">
+									<label class="form-check-label" for="inlineCheckbox1">1</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+										value="option2">
+									<label class="form-check-label" for="inlineCheckbox2">2</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"
+										disabled>
+									<label class="form-check-label" for="inlineCheckbox3">3 (غیرفعال)</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions"
+										id="inlineRadio1" value="option1">
+									<label class="form-check-label" for="inlineRadio1">1</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions"
+										id="inlineRadio2" value="option2">
+									<label class="form-check-label" for="inlineRadio2">2</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions"
+										id="inlineRadio3" value="option3" disabled>
+									<label class="form-check-label" for="inlineRadio3">3 (غیرفعال)</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<h6 class="mb-0 text-uppercase">ماسک ورودی</h6>
+								<hr />
+								<form>
+									<div class="mb-3">
+										<label class="form-label">تاریخ : </label>
+										<input type="date" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">تاریخ و زمان : </label>
+										<input type="datetime-local" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">ایمیل : </label>
+										<input type="email" class="form-control" placeholder="example@gmail.com">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">رمز عبور : </label>
+										<input type="password" class="form-control" value="........">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">ورودی فایل : </label>
+										<input type="file" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">ماه : </label>
+										<input type="month" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">جستجو : </label>
+										<input type="search" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">تلفن : </label>
+										<input type="tel" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">زمان : </label>
+										<input type="time" class="form-control">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">آدرس Url : </label>
+										<input type="url" class="form-control" placeholder="https://example.com/users/">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">هفته : </label>
+										<input type="week" class="form-control">
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<h6 class="mb-0 text-uppercase">برچسب های ورودی</h6>
+								<hr />
+								<form>
+									<div class="mb-3">
+										<label class="form-label">پایه</label>
+										<input type="text" class="form-control" data-role="tagsinput"
+											value="وردپرس,جاوا اسکریپت,طراحی وب">
+									</div>
+									<div class="mb-3">
+										<label class="form-label">انتخاب چندتایی</label>
+										<select multiple data-role="tagsinput">
+											<option value="تهران">تهران</option>
+											<option value="مشهد">مشهد</option>
+											<option value="تبریز">تبریز</option>
+											<option value="شیراز">شیراز</option>
+											<option value="اصفهان">اصفهان</option>
+										</select>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<h6 class="mb-0 text-uppercase">ورودی محدوده</h6>
+								<hr />
+								<div class="mb-3">
+									<label for="customRange1" class="form-label">مثال پیش فرض</label>
+									<input type="range" class="form-range" id="customRange1">
+								</div>
+								<div class="mb-3">
+									<label for="disabledRange" class="form-label">محدوده غیر فعال</label>
+									<input type="range" class="form-range" id="disabledRange" disabled>
+								</div>
+								<div class="mb-3">
+									<label for="customRange2" class="form-label">مثال پیش فرض</label>
+									<input type="range" class="form-range" min="0" max="5" id="customRange2">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end row-->

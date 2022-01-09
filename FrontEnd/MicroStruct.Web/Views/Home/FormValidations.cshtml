@@ -1,0 +1,357 @@
+﻿@{
+    ViewData["Title"] = "FormValidations";
+}
+
+<!--breadcrumb-->
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3">فرم ها</div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">اعتبارسنجی</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="ms-auto">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary">تنظیمات</button>
+							<button type="button"
+								class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
+								data-bs-toggle="dropdown"> <span class="visually-hidden">فهرست کشویی</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a
+									class="dropdown-item" href="javascript:;">عمل</a>
+								<a class="dropdown-item" href="javascript:;">عمل دیگر</a>
+								<a class="dropdown-item" href="javascript:;">هر چیز دیگر اینجا</a>
+								<div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">لینک
+									جدا کننده</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end breadcrumb-->
+				<div class="row">
+					<div class="col">
+						<h6 class="mb-0 text-uppercase">اعتبارسنجی پایه</h6>
+						<hr />
+						<div class="card">
+							<div class="card-body">
+								<div class="p-4 border rounded">
+									<form class="row g-3 needs-validation" novalidate>
+										<div class="col-md-4">
+											<label for="validationCustom01" class="form-label">نام</label>
+											<input type="text" class="form-control" id="validationCustom01"
+												value="پدرام" required>
+											<div class="valid-feedback">ورودی صحیح!</div>
+										</div>
+										<div class="col-md-4">
+											<label for="validationCustom02" class="form-label">نام خانوادگی</label>
+											<input type="text" class="form-control" id="validationCustom02"
+												value="شریفی" required>
+											<div class="valid-feedback">ورودی صحیح!</div>
+										</div>
+										<div class="col-md-4">
+											<label for="validationCustomUsername" class="form-label">نام کاربری</label>
+											<div class="input-group has-validation"> <span class="input-group-text"
+													id="inputGroupPrepend">@@</span>
+												<input type="text" class="form-control" id="validationCustomUsername"
+													aria-describedby="inputGroupPrepend" required>
+												<div class="invalid-feedback">لطفا یک نام کاربری وارد کنید</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label for="validationCustom03" class="form-label">شهر</label>
+											<input type="text" class="form-control" id="validationCustom03" required>
+											<div class="invalid-feedback">لطفا یک شهر معتبر وارد کنید</div>
+										</div>
+										<div class="col-md-3">
+											<label for="validationCustom04" class="form-label">استان</label>
+											<select class="form-select" id="validationCustom04" required>
+												<option selected disabled value="">انتخاب ...</option>
+												<option>...</option>
+											</select>
+											<div class="invalid-feedback">لطفا یک استان معتبر انتخاب کنید</div>
+										</div>
+										<div class="col-md-3">
+											<label for="validationCustom05" class="form-label">کد پستی</label>
+											<input type="text" class="form-control" id="validationCustom05" required>
+											<div class="invalid-feedback">لطفا یک کدپستی معتبر وارد کنید</div>
+										</div>
+										<div class="col-12">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" value=""
+													id="invalidCheck" required>
+												<label class="form-check-label" for="invalidCheck">با قواین و مقررات
+													موافقم</label>
+												<div class="invalid-feedback">شما می بایست با این مورد موافقت کنید</div>
+											</div>
+										</div>
+										<div class="col-12">
+											<button class="btn btn-primary" type="submit">تأیید فرم</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<h6 class="mb-0 text-uppercase">اعتبارسنجی پیش فرض مرورگر</h6>
+						<hr />
+						<div class="card">
+							<div class="card-body">
+								<div class="p-4 border rounded">
+									<form class="row g-3">
+										<div class="col-md-4">
+											<label for="validationDefault01" class="form-label">نام</label>
+											<input type="text" class="form-control" id="validationDefault01"
+												value="پدرام" required>
+										</div>
+										<div class="col-md-4">
+											<label for="validationDefault02" class="form-label">نام خانوادگی</label>
+											<input type="text" class="form-control" id="validationDefault02"
+												value="شریفی" required>
+										</div>
+										<div class="col-md-4">
+											<label for="validationDefaultUsername" class="form-label">نام کاربری</label>
+											<div class="input-group"> <span class="input-group-text"
+													id="inputGroupPrepend2">@@</span>
+												<input type="text" class="form-control" id="validationDefaultUsername"
+													aria-describedby="inputGroupPrepend2" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label for="validationDefault03" class="form-label">شهر</label>
+											<input type="text" class="form-control" id="validationDefault03" required>
+										</div>
+										<div class="col-md-3">
+											<label for="validationDefault04" class="form-label">استان</label>
+											<select class="form-select" id="validationDefault04" required>
+												<option selected disabled value="">انتخاب ...</option>
+												<option>...</option>
+											</select>
+										</div>
+										<div class="col-md-3">
+											<label for="validationDefault05" class="form-label">کد پستی</label>
+											<input type="text" class="form-control" id="validationDefault05" required>
+										</div>
+										<div class="col-12">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" value=""
+													id="invalidCheck2" required>
+												<label class="form-check-label" for="invalidCheck2">با قواین و مقررات
+													موافقم</label>
+											</div>
+										</div>
+										<div class="col-12">
+											<button class="btn btn-primary" type="submit">تأیید فرم</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<h6 class="mb-0 text-uppercase">اعتبارسنجی سمت سرور</h6>
+						<hr />
+						<div class="card">
+							<div class="card-body">
+								<div class="p-4 border rounded">
+									<form class="row g-3">
+										<div class="col-md-4">
+											<label for="validationServer01" class="form-label">نام</label>
+											<input type="text" class="form-control is-valid" id="validationServer01"
+												value="پدرام" required>
+											<div class="valid-feedback">ورودی صحیح!</div>
+										</div>
+										<div class="col-md-4">
+											<label for="validationServer02" class="form-label">نام خانوادگی</label>
+											<input type="text" class="form-control is-valid" id="validationServer02"
+												value="شریفی" required>
+											<div class="valid-feedback">ورودی صحیح!</div>
+										</div>
+										<div class="col-md-4">
+											<label for="validationServerUsername" class="form-label">نام کاربری</label>
+											<div class="input-group has-validation"> <span class="input-group-text"
+													id="inputGroupPrepend3">@@</span>
+												<input type="text" class="form-control is-invalid"
+													id="validationServerUsername"
+													aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+													required>
+												<div id="validationServerUsernameFeedback" class="invalid-feedback">
+													لطفا یک نام کاربری وارد کنید</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<label for="validationServer03" class="form-label">شهر</label>
+											<input type="text" class="form-control is-invalid" id="validationServer03"
+												aria-describedby="validationServer03Feedback" required>
+											<div id="validationServer03Feedback" class="invalid-feedback">لطفا یک شهر
+												معتبر وارد کنید</div>
+										</div>
+										<div class="col-md-3">
+											<label for="validationServer04" class="form-label">استان</label>
+											<select class="form-select is-invalid" id="validationServer04"
+												aria-describedby="validationServer04Feedback" required>
+												<option selected disabled value="">انتخاب ...</option>
+												<option>...</option>
+											</select>
+											<div id="validationServer04Feedback" class="invalid-feedback">لطفا یک استان
+												معتبر وارد کنید</div>
+										</div>
+										<div class="col-md-3">
+											<label for="validationServer05" class="form-label">کد پستی</label>
+											<input type="text" class="form-control is-invalid" id="validationServer05"
+												aria-describedby="validationServer05Feedback" required>
+											<div id="validationServer05Feedback" class="invalid-feedback">لطفا یک کدپستی
+												معتبر وارد کنید</div>
+										</div>
+										<div class="col-12">
+											<div class="form-check">
+												<input class="form-check-input is-invalid" type="checkbox" value=""
+													id="invalidCheck3" aria-describedby="invalidCheck3Feedback"
+													required>
+												<label class="form-check-label" for="invalidCheck3">با قواین و مقررات
+													موافقم</label>
+												<div id="invalidCheck3Feedback" class="invalid-feedback">شما می بایست با
+													این مورد موافقت کنید</div>
+											</div>
+										</div>
+										<div class="col-12">
+											<button class="btn btn-primary" type="submit">تأیید فرم</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<h6 class="mb-0 text-uppercase">عناصر پشتیبانی شده</h6>
+						<hr />
+						<div class="card">
+							<div class="card-body">
+								<div class="p-4 border rounded">
+									<form class="was-validated">
+										<div class="mb-3">
+											<label for="validationTextarea" class="form-label">محیط متنی</label>
+											<textarea class="form-control is-invalid" id="validationTextarea"
+												placeholder="متن نمونه" required></textarea>
+											<div class="invalid-feedback">لطفا یک متن داخل محیط متنی وارد کنید</div>
+										</div>
+										<div class="form-check mb-3">
+											<input type="checkbox" class="form-check-input" id="validationFormCheck1"
+												required>
+											<label class="form-check-label" for="validationFormCheck1">چک باکس</label>
+											<div class="invalid-feedback">نمونه متن بازخورد نامعتبر</div>
+										</div>
+										<div class="form-check">
+											<input type="radio" class="form-check-input" id="validationFormCheck2"
+												name="radio-stacked" required>
+											<label class="form-check-label" for="validationFormCheck2">دکمه
+												رادیویی</label>
+										</div>
+										<div class="form-check mb-3">
+											<input type="radio" class="form-check-input" id="validationFormCheck3"
+												name="radio-stacked" required>
+											<label class="form-check-label" for="validationFormCheck3">دکمه رادیویی
+												2</label>
+											<div class="invalid-feedback">نمونه متن بازخورد نامعتبر</div>
+										</div>
+										<div class="mb-3">
+											<select class="form-select" required aria-label="select example">
+												<option value="">باز کردن فهرست انتخاب</option>
+												<option value="1">یک</option>
+												<option value="2">دو</option>
+												<option value="3">سه</option>
+											</select>
+											<div class="invalid-feedback">نمونه بازخورد فیلد نامعتبر فیلد انتخاب</div>
+										</div>
+										<div class="mb-3">
+											<input type="file" class="form-control" aria-label="file example" required>
+											<div class="invalid-feedback">نمونه بازخورد فیلد نامعتبر فیلد ارسال فایل
+											</div>
+										</div>
+										<div class="mb-3">
+											<button class="btn btn-primary" type="submit" disabled>تأیید فرم</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<h6 class="mb-0 text-uppercase">تولتیپ ها</h6>
+						<hr />
+						<div class="card">
+							<div class="card-body">
+								<div class="p-4 border rounded">
+									<form class="row g-3 needs-validation" novalidate>
+										<div class="col-md-4 position-relative">
+											<label for="validationTooltip01" class="form-label">نام</label>
+											<input type="text" class="form-control" id="validationTooltip01"
+												value="پدرام" required>
+											<div class="valid-tooltip">ورودی صحیح!</div>
+										</div>
+										<div class="col-md-4 position-relative">
+											<label for="validationTooltip02" class="form-label">نام خانوادگی</label>
+											<input type="text" class="form-control" id="validationTooltip02"
+												value="شریفی" required>
+											<div class="valid-tooltip">ورودی صحیح!</div>
+										</div>
+										<div class="col-md-4 position-relative">
+											<label for="validationTooltipUsername" class="form-label">نام کاربری</label>
+											<div class="input-group has-validation"> <span class="input-group-text"
+													id="validationTooltipUsernamePrepend">@@</span>
+												<input type="text" class="form-control" id="validationTooltipUsername"
+													aria-describedby="validationTooltipUsernamePrepend" required>
+												<div class="invalid-tooltip">لطفا یک نام کاربری منحصر به فرد و معتبر
+													وارد کنید
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 position-relative">
+											<label for="validationTooltip03" class="form-label">شهر</label>
+											<input type="text" class="form-control" id="validationTooltip03" required>
+											<div class="invalid-tooltip">لطفا یک شهر معتبر وارد کنید</div>
+										</div>
+										<div class="col-md-3 position-relative">
+											<label for="validationTooltip04" class="form-label">استان</label>
+											<select class="form-select" id="validationTooltip04" required>
+												<option selected disabled value="">انتخاب ...</option>
+												<option>...</option>
+											</select>
+											<div class="invalid-tooltip">لطفا یک استان معتبر انتخاب کنید</div>
+										</div>
+										<div class="col-md-3 position-relative">
+											<label for="validationTooltip05" class="form-label">کد پستی</label>
+											<input type="text" class="form-control" id="validationTooltip05" required>
+											<div class="invalid-tooltip">لطفا یک کدپستی معتبر وارد کنید</div>
+										</div>
+										<div class="col-12">
+											<button class="btn btn-primary" type="submit">تأیید فرم</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end row-->
+
+@@section Scripts{
+    	<script>
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(function () {
+			'use strict'
+
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms)
+				.forEach(function (form) {
+					form.addEventListener('submit', function (event) {
+						if (!form.checkValidity()) {
+							event.preventDefault()
+							event.stopPropagation()
+						}
+
+						form.classList.add('was-validated')
+					}, false)
+				})
+		})()
+	</script>
+}

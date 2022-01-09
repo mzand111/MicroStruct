@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "FormDateTimePickes";
+}
+
+				<!--breadcrumb-->
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3">فرم ها</div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">انتخابگر تاریخ و زمان</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="ms-auto">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary">تنظیمات</button>
+							<button type="button"
+								class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
+								data-bs-toggle="dropdown"> <span class="visually-hidden">فهرست کشویی</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a
+									class="dropdown-item" href="javascript:;">عمل</a>
+								<a class="dropdown-item" href="javascript:;">عمل دیگر</a>
+								<a class="dropdown-item" href="javascript:;">هر چیز دیگر اینجا</a>
+								<div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">لینک
+									جدا کننده</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end breadcrumb-->
+				<div class="row">
+					<div class="col-xl-9 mx-auto">
+						<h6 class="mb-0 text-uppercase">انتخابگر تاریخ و زمان</h6>
+						<hr />
+						<div class="card">
+							<div class="card-body">
+								<div class="mb-3">
+									<label class="form-label">یک تاریخ انتخاب کنید (میلادی)</label>
+									<input type="text" class="form-control datepicker" />
+								</div>
+								<div class="mb-3">
+									<label class="form-label">یک تاریخ انتخاب کنید (شمسی)</label>
+									<input type="text" class="form-control datepicker2" />
+								</div>
+								<label class="mb-2">انتخاب تاریخ با خروجی تایم استمپ : </label>
+								<div class="mb-3">
+									<label class="form-label text-primary">انتخابگر تاریخ و زمان (شمسی)</label>
+									<input type="text" class="form-control" id="tarikh" />
+									<label class="form-label text-primary mt-2">خروجی تایم استمپ</label>
+									<input type="text" class="form-control" id="tarikhAlt" />
+								</div>
+								<div class="mt-4">
+									<label class="form-label">انتخابگر زمان</label>
+									<input type="text" class="form-control timepicker" />
+								</div>
+							</div>
+						</div>
+						<h6 class="mb-0 text-uppercase">انتخابگر متریال</h6>
+						<hr />
+						<div class="card">
+							<div class="card-body">
+								<div class="mb-3">
+									<label class="form-label">انتخابگر تاریخ و زمان پیش فرض</label>
+									<input class="result form-control" type="text" id="date-time"
+										placeholder="انتخاب کنید ...">
+								</div>
+								<div class="mb-3">
+									<label class="form-label">فقط انتخابگر تاریخ</label>
+									<input class="result form-control" type="text" id="date"
+										placeholder="انتخاب کنید ...">
+								</div>
+								<div class="">
+									<label class="form-label">فقط انتخابگر زمان</label>
+									<input class="result form-control" type="text" id="time"
+										placeholder="انتخاب کنید ...">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end row-->
+
+@section Scripts{
+    	<script>
+		$('.datepicker').pickadate({
+				selectMonths: true,
+				selectYears: true
+			}),
+			$('.timepicker').pickatime()
+	</script>
+	<script>
+		$('.datepicker2').persianDatepicker({
+			'format': 'YYYY/MM/DD',
+			'autoclose': true,
+			showOtherMonths: true,
+			selectOtherMonths: true
+		});
+		$("#tarikh").persianDatepicker({
+			altField: "#tarikhAlt",
+			altFormat: "X",
+			format: "D MMMM YYYY HH:mm a",
+			observer: true,
+			timePicker: {
+				enabled: true
+			}
+		});
+	</script>
+	<script>
+		$(function () {
+			$('#date-time').bootstrapMaterialDatePicker({
+				format: 'YYYY-MM-DD HH:mm'
+			});
+			$('#date').bootstrapMaterialDatePicker({
+				time: false
+			});
+			$('#time').bootstrapMaterialDatePicker({
+				date: false,
+				format: 'HH:mm'
+			});
+		});
+	</script>
+}

@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "FormTextEditor";
+}
+
+<!--breadcrumb-->
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">فرم ها</div>
+    <div class="ps-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+                <li class="breadcrumb-item">
+                    <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">ویرایشگر متن</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="ms-auto">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">تنظیمات</button>
+            <button type="button"
+                    class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
+                    data-bs-toggle="dropdown">
+                <span class="visually-hidden">فهرست کشویی</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+                <a class="dropdown-item" href="javascript:;">عمل</a>
+                <a class="dropdown-item" href="javascript:;">عمل دیگر</a>
+                <a class="dropdown-item" href="javascript:;">هر چیز دیگر اینجا</a>
+                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">
+                    لینک
+                    جدا کننده
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end breadcrumb-->
+<div class="card">
+    <div class="card-body">
+        <h6 class="mb-0 text-uppercase">ویرایشگر متن TinyMCE</h6>
+        <hr />
+        <form method="post">
+            <textarea id="mytextarea" name="mytextarea">سلام دنیا !</textarea>
+        </form>
+    </div>
+</div>
+
+@if ((string)ViewBag.lang == "fa")
+{
+    <div class="card">
+        <div class="card-body">
+            <h6 class="mb-0 text-uppercase">ویرایشگر متن CKEditor</h6>
+            <hr />
+            <form method="post">
+                <textarea id="myCKEditortextarea" name="myCKEditortextarea">سلام دنیا !</textarea>
+            </form>
+        </div>
+    </div>
+}
+
+
+@section Scripts{
+<script>
+    tinymce.init({
+        selector: '#mytextarea',
+        height: 400,
+        theme: 'silver',
+        plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+        image_advtab: true,
+        templates: [{
+                title: 'متن نمونه 1',
+                content: 'متن 1'
+            },
+            {
+                title: 'متن نمونه 2',
+                content: 'متن 2'
+            }
+        ],
+        content_css: []
+    });
+</script>
+
+	@if((string)ViewBag.lang=="fa"){
+<script>
+    CKEDITOR.replace('myCKEditortextarea')
+</script>
+	}
+}
