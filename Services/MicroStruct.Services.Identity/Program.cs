@@ -33,11 +33,14 @@ builder.Services.AddScoped<IProfileService, ProfileService>();
 b.AddDeveloperSigningCredential();
 
 var app = builder.Build();
-var serviceScopeFactory = app.Services.GetService<IServiceScopeFactory>();
-var scope = serviceScopeFactory.CreateScope();
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dataContext.Database.Migrate();
+    var f = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    f.Initialize();
+}
 
-var f = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-f.Initialize();
 
 
 // Configure the HTTP request pipeline.
@@ -46,6 +49,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+
 }
 else
 {

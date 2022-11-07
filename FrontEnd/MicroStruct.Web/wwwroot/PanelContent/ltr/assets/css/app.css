@@ -28,18 +28,13 @@ File: app.css
 
 /* General */
 
-@font-face {
-	font-family: "iransans";
-	src: url("../fonts/IRANSansWeb_Light.woff2") format("woff2");
-	src: url("../fonts/IRANSansWeb_Light.woff") format("woff");
-}
 
 body {
 	font-size: 14px;
 	color: #525f7f;
 	background-color: #f8f9fe;
 	overflow-x: hidden;
-	font-family: "iransans", 'Roboto', sans-serif;
+	font-family:'Roboto', sans-serif;
 }
 
 
@@ -94,10 +89,10 @@ a {
 
 
 .logo-text {
-	font-size: 22px;
+	font-size: 20px;
 	margin-left: 5px;
 	margin-bottom: 0;
-	color: #8833ff;
+	color: #cf9004;
 }
 
 

@@ -8,13 +8,13 @@ namespace MicroStruct.Services.Identity.Initializer
 {
     public class DbInitializer : IDbInitializer
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public DbInitializer(ApplicationDbContext db, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _db = db;
+            _dbContext = db;
             _userManager = userManager;
             _roleManager = roleManager;
         }
@@ -36,18 +36,13 @@ namespace MicroStruct.Services.Identity.Initializer
                 Email = "admin1@gmail.com",
                 EmailConfirmed = true,
                 PhoneNumber = "12",
-                FirstName = "Ben",
-                LastName = "Admin"
+                FirstName = "George",
+                LastName = "Lucas"
             };
 
             _userManager.CreateAsync(adminUser, "Admin123*").GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(adminUser, GlobalRoles.Admin).GetAwaiter().GetResult();
-            _userManager.AddClaimsAsync(adminUser, new Claim[]{
-                new Claim(JwtClaimTypes.Name,adminUser.FirstName+" "+adminUser.LastName),
-                new Claim(JwtClaimTypes.GivenName,adminUser.FirstName),
-                new Claim(JwtClaimTypes.FamilyName,adminUser.LastName),
-                 new Claim(JwtClaimTypes.Role,GlobalRoles.Admin)
-            }).GetAwaiter().GetResult() ;
+            
 
 
             ApplicationUser customerUser = new ApplicationUser()
@@ -62,12 +57,7 @@ namespace MicroStruct.Services.Identity.Initializer
 
             _userManager.CreateAsync(customerUser, "GlobalRoles*").GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(customerUser, GlobalRoles.Customer).GetAwaiter().GetResult();
-            _userManager.AddClaimsAsync(customerUser, new Claim[]{
-                new Claim(JwtClaimTypes.Name,customerUser.FirstName+" "+customerUser.LastName),
-                new Claim(JwtClaimTypes.GivenName,customerUser.FirstName),
-                new Claim(JwtClaimTypes.FamilyName,customerUser.LastName),
-                 new Claim(JwtClaimTypes.Role,GlobalRoles.Customer)
-            }).GetAwaiter().GetResult();
+           
 
             
         }

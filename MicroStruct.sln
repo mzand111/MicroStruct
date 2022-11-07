@@ -8,6 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{7CB747E9-E953-4406-B2EE-73BB9F3C318B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroStruct.Web", "FrontEnd\MicroStruct.Web\MicroStruct.Web.csproj", "{0986BC45-0E56-400B-9B4D-29C8DA20A3F5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{65A25329-2FE3-4119-A3F1-DA334A6FEDB2} = {65A25329-2FE3-4119-A3F1-DA334A6FEDB2}
+		{FDC194C6-CDA9-4323-8B38-1FE628AE3D21} = {FDC194C6-CDA9-4323-8B38-1FE628AE3D21}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroStruct.Services.Identity", "Services\MicroStruct.Services.Identity\MicroStruct.Services.Identity.csproj", "{65A25329-2FE3-4119-A3F1-DA334A6FEDB2}"
 EndProject

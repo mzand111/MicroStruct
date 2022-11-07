@@ -1,4 +1,51 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Authentication
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Http
+@{
+    Layout = null;
+    System.Security.Claims.Claim userFirstName = null;
+    System.Security.Claims.Claim userLastName = null;
+    // System.Security.Claims.Claim userRole = null;
+    List<string> userRoleName = null;
+    //System.Security.Claims.Claim userUniversityID = null;
+    //System.Security.Claims.Claim userOrganizationUnitID = null;
+    //System.Security.Claims.Claim userOrganizationOfficeID = null;
+    //System.Security.Claims.Claim userUniversityName = null;
+    //System.Security.Claims.Claim userOrganizationUnitTitle = null;
+    //System.Security.Claims.Claim userOrganizationOfficeTitle = null;
+    //System.Security.Claims.Claim userHasVisitingResponsibility = null;
+    //System.Security.Claims.Claim userImpersonation = null;
+    //System.Security.Claims.Claim originalUsername = null;
+    var UserRoleNameShowToUser = "";
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+
+    if (claimsIdentity != null)
+    {
+        userFirstName = claimsIdentity.FindFirst("Given_Name");
+        userLastName = claimsIdentity.FindFirst("family_name");
+        userRoleName = claimsIdentity.FindAll("role").Select(a => a.Value).ToList();
+
+        //userUniversityID = claimsIdentity.FindFirst("UniversityID");
+        //userOrganizationUnitID = claimsIdentity.FindFirst("OrganizationUnitID");
+        //userOrganizationOfficeID = claimsIdentity.FindFirst("OrganizationOfficeID");
+        //userOrganizationOfficeTitle = claimsIdentity.FindFirst("OrganizationOfficeTitle");
+        //userOrganizationUnitTitle = claimsIdentity.FindFirst("OrganizationUnitTitle");
+        //userImpersonation = claimsIdentity.FindFirst("UserImpersonation");
+        //originalUsername = claimsIdentity.FindFirst("OriginalUsername");
+    }
+}
+else
+{
+
+}
+
+@{
     ViewBag.lang = "en";
 }
 <html lang="en" dir="@(((string)ViewBag.lang=="fa")?"rtl":"")">
@@ -11,22 +58,22 @@
 
     <!--plugins-->
      <!--plugins-notifications-->
-    <link rel="stylesheet" href="/PanelContent/rtl/assets/plugins/notifications/css/lobibox.min.css" />
+    <link rel="stylesheet" href="/PanelContent/ltr/assets/plugins/notifications/css/lobibox.min.css" />
 
-    <link href="/PanelContent/rtl/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="/PanelContent/ltr/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
 
-    <link href="/PanelContent/rtl/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet" />
+    <link href="/PanelContent/ltr/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet" />
 
-    <link href="/PanelContent/rtl/assets/plugins/smart-wizard/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+    <link href="/PanelContent/ltr/assets/plugins/smart-wizard/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
 
     <!--plugins-upload-->
-    <link href="/PanelContent/rtl/assets/plugins/fancy-file-uploader/fancy_fileupload.css" rel="stylesheet" />
-	<link href="/PanelContent/rtl/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css" rel="stylesheet" />
+    <link href="/PanelContent/ltr/assets/plugins/fancy-file-uploader/fancy_fileupload.css" rel="stylesheet" />
+	<link href="/PanelContent/ltr/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css" rel="stylesheet" />
 
      <!--plugins persian datepicker -->
-    <link href="/PanelContent/rtl/assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" />
-	<link href="/PanelContent/rtl/assets/plugins/datetimepicker/css/classic.time.css" rel="stylesheet" />
-	<link href="/PanelContent/rtl/assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" />
+    <link href="/PanelContent/ltr/assets/plugins/datetimepicker/css/classic.css" rel="stylesheet" />
+	<link href="/PanelContent/ltr/assets/plugins/datetimepicker/css/classic.time.css" rel="stylesheet" />
+    <link href="/PanelContent/ltr/assets/plugins/datetimepicker/css/classic.date.css" rel="stylesheet" />
 	<link href="@(((string)ViewBag.lang=="fa")?"/PanelContent/rtl/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css":"/PanelContent/ltr/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css")" rel="stylesheet">
 	<link href="/PanelContent/rtl/assets/plugins/persiandatepicker/persian-datepicker-0.4.5.min.css" rel="stylesheet" />
     
@@ -35,13 +82,13 @@
     <link href="@(((string)ViewBag.lang=="fa")?"/PanelContent/rtl/assets/plugins/select2/css/select2-bootstrap4.css":"/PanelContent/ltr/assets/plugins/select2/css/select2-bootstrap4.css")"  rel="stylesheet" />
 
     <!--plugins necessary -->
-    <link href="/PanelContent/rtl/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-    <link href="/PanelContent/rtl/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-    <link href="/PanelContent/rtl/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <link href="/PanelContent/ltr/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="/PanelContent/ltr/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="/PanelContent/ltr/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 
     <!-- loader-->
-    <link href="/PanelContent/rtl/assets/css/pace.min.css" rel="stylesheet" />
-    <script src="/PanelContent/rtl/assets/js/pace.min.js"></script>
+    <link href="/PanelContent/ltr/assets/css/pace.min.css" rel="stylesheet" />
+    <script src="/PanelContent/ltr/assets/js/pace.min.js"></script>
 
     <!-- Bootstrap CSS -->
     <link href="@(((string)ViewBag.lang=="fa")?"/PanelContent/rtl/assets/css/bootstrap.min.css":"/PanelContent/ltr/assets/css/bootstrap.min.css")" rel="stylesheet">
@@ -49,9 +96,9 @@
     <link href="@(((string)ViewBag.lang=="fa")?"/PanelContent/rtl/assets/css/app.css":"/PanelContent/ltr/assets/css/app.css")" rel="stylesheet">
     <link href="/PanelContent/rtl/assets/css/icons.css" rel="stylesheet">
     <!-- Theme Style CSS -->
-    <link rel="stylesheet" href="/PanelContent/rtl/assets/css/dark-theme.css" />
-    <link rel="stylesheet" href="/PanelContent/rtl/assets/css/semi-dark.css" />
-    <link rel="stylesheet" href="/PanelContent/rtl/assets/css/header-colors.css" />
+    <link rel="stylesheet" href="/PanelContent/ltr/assets/css/dark-theme.css" />
+    <link rel="stylesheet" href="/PanelContent/ltr/assets/css/semi-dark.css" />
+    <link rel="stylesheet" href="/PanelContent/ltr/assets/css/header-colors.css" />
 
     <title>@ViewData["Title"] - MicroStruct.Web</title>
 </head>
@@ -62,10 +109,10 @@
         <div class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
                 <div>
-                    <img src="/PanelContent/rtl/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+                    <img src="/PanelContent/ltr/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
                 </div>
                 <div>
-                    <h4 class="logo-text">Synadmin</h4>
+                    <h4 class="logo-text">LF Transparency</h4>
                 </div>
                 <div class="toggle-icon ms-auto">
                     <i class="bx @(((string)ViewBag.lang=="fa")?"bx-last-page":"bx-first-page")"></i>
@@ -77,174 +124,86 @@
                 <li>
                     <a class="has-arrow" href="javascript:;">
                         <div class="parent-icon">
-                            <i class='bx bx-gift'></i>
+                            <i class='lni lni-dashboard'></i>
                         </div>
-                        <div class="menu-title">کامپوننت ها</div>
+                        <div class="menu-title">Dashboard</div>
                     </a>
                     <ul>
                         <li>
-                            <a href="/Component/ComponentAlerts"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")  "></i>هشدار</a>
+                            <a href="#"><i class="bx bx-right-arrow-alt"></i>Total Dashboard</a>
                         </li>
                         <li>
-                            <a href="/Component/ComponentAccordions"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آکاردئون</a>
+                            <a href="#"><i class="bx bx-right-arrow-alt"></i>Financial Dashboard</a>
                         </li>
-                        <li>
-                            <a href="/component/ComponentButtons"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>دکمه</a>
-                        </li>
-                        <li>
-                            <a href="/component/ComponentModals"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>مُدال</a>
-                        </li>
-                        <li>
-                            <a href="/component/ComponentProgressBars"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>نوار پیشرفت</a>
-                        </li>
-                        <li>
-                            <a href="/component/ComponentNotifications"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>اعلان ها</a>
-                        </li>
-
+                       
                     </ul>
                 </li>
 
+                
+                <li class="menu-label">Actions</li>
                 <li>
+                    <a class="has-arrow" href="/Home/Cartable">
+                        <div class="parent-icon">
+                            <i class='bx bx-task'></i>
+                        </div>
+                        <div class="menu-title">Requests</div>
+                    </a>
+                   
+                </li>
+                <li>
+                    <a class="has-arrow" href="/Home/Calendar">
+                        <div class="parent-icon">
+                            <i class="bx bx-calendar"></i>
+                        </div>
+                        <div class="menu-title">Sessions</div>
+                    </a>
+                    
+                </li>
+                <li class="menu-label">Management</li>
+
+                 <li>
+                    <a href="/home/UserProfile">
+                        <div class="parent-icon">
+                            <i class='fadeIn animated bx bx-analyse'></i>
+                        </div>
+                        <div class="menu-title">Workflow Models</div>
+                    </a>
+                </li>
+                 <li>
                     <a class="has-arrow" href="javascript:;">
                         <div class="parent-icon">
-                            <i class='bx bx-atom'></i>
+                            <i class='bx bx-wrench'></i>
                         </div>
-                        <div class="menu-title">آیکون ها</div>
+                        <div class="menu-title">Settings</div>
                     </a>
                     <ul>
                         <li>
-                            <a href="/icons/IconsLineIcons"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آیکون های LineIcons</a>
+                            <a href="#"><i class="bx bx-right-arrow-alt"></i>Loan request types</a>
                         </li>
                         <li>
-                            <a href="/icons/IconsBoxicons"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آیکون های Boxicons</a>
+                            <a href="#"><i class="bx bx-right-arrow-alt"></i>Request types validity periods</a>
                         </li>
-                        <li>
-                            <a href="/icons/IconsFeatherIcons"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آیکون های Feather</a>
-                        </li>
+                       
                     </ul>
                 </li>
-                <li class="menu-label">فرم ها و جداول</li>
-                <li>
-                    <a class="has-arrow" href="javascript:;">
-                        <div class="parent-icon">
-                            <i class='bx bx-hourglass'></i>
-                        </div>
-                        <div class="menu-title">فرم ها</div>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/form/FormElements"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>عناصر فرم</a>
-                        </li>
-                        <li>
-                            <a href="/form/FormInputGroup"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ورودی گروهی</a>
-                        </li>
-                        <li>
-                            <a href="/form/FormLayouts"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>لایه های فرم</a>
-                        </li>
-                        <li>
-                            <a href="/form/FormValidations"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>اعتبارسنجی فرم</a>
-                        </li>
-                        <li>
-                            <a href="/form/FormWizard"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>فرم حرفه ای</a>
-                        </li>
-                        <li>
-                            <a href="/form/FormTextEditor"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ویرایشگر متن</a>
-                        </li>
-                        <li>
-                            <a href="/form/FormFileUpload"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>آپلود فایل</a>
-                        </li>
-                        <li>
-                            <a href="/form/FormDateTimePickes"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>انتخابگر تاریخ</a>
-                        </li>
-                        <li>
-                            <a href="/form/FormSelect2"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>انتخاب 2</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow" href="javascript:;">
-                        <div class="parent-icon">
-                            <i class="bx bx-grid-alt"></i>
-                        </div>
-                        <div class="menu-title">جداول</div>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/Table/TableBasic"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>جدول پایه</a>
-                        </li>
-                        <li>
-                            <a href="/Table/TableDatatable"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>جدول داده</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-label">صفحات</li>
-                <li>
-                    <a class="has-arrow" href="javascript:;">
-                        <div class="parent-icon">
-                            <i class='bx bx-lock-open-alt'></i>
-                        </div>
-                        <div class="menu-title">احراز هویت</div>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="authentication-signin.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ورود</a>
-                        </li>
-                        <li>
-                            <a href="authentication-signup.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ثبت نام</a>
-                        </li>
-                        <li>
-                            <a href="authentication-signin-with-header-footer.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ورود با هدر و فوتر</a>
-                        </li>
-                        <li>
-                            <a href="authentication-signup-with-header-footer.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>ثبت نام با هدر و فوتر</a>
-                        </li>
-                        <li>
-                            <a href="authentication-forgot-password.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>فراموشی رمز عبور</a>
-                        </li>
-                        <li>
-                            <a href="authentication-reset-password.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>بازنشانی رمز عبور</a>
-                        </li>
-                        <li>
-                            <a href="authentication-lock-screen.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>صفحه قفل</a>
-                        </li>
-                    </ul>
-                </li>
+
+                <li class="menu-label">General</li>
+               
                 <li>
                     <a href="/home/UserProfile">
                         <div class="parent-icon">
                             <i class='bx bx-user-pin'></i>
                         </div>
-                        <div class="menu-title">پروفایل کاربر</div>
+                        <div class="menu-title">My Profile</div>
                     </a>
                 </li>
-                <li>
-                    <a class="has-arrow" href="javascript:;">
-                        <div class="parent-icon">
-                            <i class="bx bx-error"></i>
-                        </div>
-                        <div class="menu-title">خطا ها</div>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="errors-404-error.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>خطای 404</a>
-                        </li>
-                        <li>
-                            <a href="errors-500-error.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>خطای 500</a>
-                        </li>
-                        <li>
-                            <a href="errors-coming-soon.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>صفحه به زودی</a>
-                        </li>
-                        <li>
-                            <a href="error-blank-page.html" target="_blank"><i class="bx @(((string)ViewBag.lang=="fa")?"bx-left-arrow-alt":"bx-right-arrow-alt")"></i>صفحه خالی</a>
-                        </li>
-                    </ul>
-                </li>
+               
                 <li>
                     <a href="faq.html">
                         <div class="parent-icon">
                             <i class="bx bx-help-circle"></i>
                         </div>
-                        <div class="menu-title">سوالات متداول</div>
+                        <div class="menu-title">FAQ</div>
                     </a>
                 </li>
 
@@ -277,7 +236,7 @@
                     </div>
                     <div class="search-bar flex-grow-1">
                         <div class="position-relative search-bar-box">
-                            <input type="text" class="form-control search-control" placeholder="جستجو ..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
+                            <input type="text" class="form-control search-control" placeholder="Search ..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
                             <span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
                         </div>
                     </div>
@@ -288,51 +247,7 @@
                                     <i class='bx bx-search'></i>
                                 </a>
                             </li>
-                            <li class="nav-item dropdown dropdown-large">
-                                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class='bx bx-category'></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <div class="row row-cols-3 g-3 p-3">
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-cosmic text-white">
-                                                <i class='bx bx-group'></i>
-                                            </div>
-                                            <div class="app-title">تیم ها</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-burning text-white">
-                                                <i class='bx bx-atom'></i>
-                                            </div>
-                                            <div class="app-title">پروژه ها</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-lush text-white">
-                                                <i class='bx bx-shield'></i>
-                                            </div>
-                                            <div class="app-title">وظایف</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-kyoto text-dark">
-                                                <i class='bx bx-notification'></i>
-                                            </div>
-                                            <div class="app-title">نظرات</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-blues text-dark">
-                                                <i class='bx bx-file'></i>
-                                            </div>
-                                            <div class="app-title">فایل ها</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div class="app-box mx-auto bg-gradient-moonlit text-white">
-                                                <i class='bx bx-filter-alt'></i>
-                                            </div>
-                                            <div class="app-title">هشدار ها</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                           
                             <li class="nav-item dropdown dropdown-large">
                                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="alert-count">7</span>
@@ -341,8 +256,8 @@
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="javascript:;">
                                         <div class="msg-header">
-                                            <p class="msg-header-title">اعلان ها</p>
-                                            <p class="msg-header-clear ms-auto">علامت گذاری همه به عنوان خوانده شده</p>
+                                            <p class="msg-header-title">Alerts</p>
+                                            <p class="msg-header-clear ms-auto">Mark as read</p>
                                         </div>
                                     </a>
                                     <div class="header-notifications-list">
@@ -352,8 +267,8 @@
                                                     <i class="bx bx-group"></i>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">کاربران جدید<span class="msg-time float-end">14 ثانیه پیش</span></h6>
-                                                    <p class="msg-info">5 کاربر جدید ثبت نام کردند</p>
+                                                    <h6 class="msg-name">New users<span class="msg-time float-end">14 secends ago</span></h6>
+                                                    <p class="msg-info">5 New users registered</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -363,8 +278,8 @@
                                                     <i class="bx bx-cart-alt"></i>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">سفارشات جدید <span class="msg-time float-end">2 دقیقه پیش</span></h6>
-                                                    <p class="msg-info">شما یک سفارش جدید دریافت کردید</p>
+                                                    <h6 class="msg-name">A new request registered <span class="msg-time float-end">2 minuts ago</span></h6>
+                                                    <p class="msg-info">A new request has been registered</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -374,8 +289,8 @@
                                                     <i class="bx bx-file"></i>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">24 فایل PDF<span class="msg-time float-end">19 دقیقه پیش</span></h6>
-                                                    <p class="msg-info">فایل های pdf جدید تولید شدند</p>
+                                                    <h6 class="msg-name">24 Documents uploaded <span class="msg-time float-end">19 minuts ago </span></h6>
+                                                    <p class="msg-info">24 Documents uploaded for the loan request</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -385,8 +300,8 @@
                                                     <i class="bx bx-send"></i>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">زمان پاسخگویی <span class="msg-time float-end">28 دقیقه پیش</span></h6>
-                                                    <p class="msg-info">میانگین زمان پاسخوگیی 5.1 دقیقه است</p>
+                                                    <h6 class="msg-name">A new request registered <span class="msg-time float-end">2 minuts ago</span></h6>
+                                                    <p class="msg-info">A new request has been registered</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -397,9 +312,9 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <h6 class="msg-name">
-                                                        تایید محصول جدید <span class="msg-time float-end">2 ساعت پیش</span>
+                                                        Loan final acceptance <span class="msg-time float-end">2 hours ago</span>
                                                     </h6>
-                                                    <p class="msg-info">محصول جدید شما تایید شد</p>
+                                                    <p class="msg-info">The acceptance workflow of the loan finished with ....</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -409,8 +324,8 @@
                                                     <i class="bx bx-message-detail"></i>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">دیدگاه جدید <span class="msg-time float-end">4 ساعت پیش</span></h6>
-                                                    <p class="msg-info">دیدگاه های جدید کاربران دریافت شد</p>
+                                                    <h6 class="msg-name">Comment added to the request <span class="msg-time float-end">4 hours ago</span></h6>
+                                                    <p class="msg-info">New comment added to the loan request</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -420,8 +335,8 @@
                                                     <i class='bx bx-check-square'></i>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">ارسال محصول شما <span class="msg-time float-end">5 ساعت پیش</span></h6>
-                                                    <p class="msg-info">محصول شما با موفقیت ارسال شد</p>
+                                                    <h6 class="msg-name">Loan financial calculations finished <span class="msg-time float-end">5 hours ago</span></h6>
+                                                    <p class="msg-info">Loan financial calculations finished successfully</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -431,8 +346,8 @@
                                                     <i class='bx bx-user-pin'></i>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">24 نویسنده جدید<span class="msg-time float-end">1 روز پیش</span></h6>
-                                                    <p class="msg-info">در هفته گذشته 24 نویسنده جدید به شرکت پیوست</p>
+                                                    <h6 class="msg-name">Comment added to the request<span class="msg-time float-end">2 days ago</span></h6>
+                                                    <p class="msg-info">New comment added to the loan request</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -442,14 +357,14 @@
                                                     <i class='bx bx-door-open'></i>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">هشدار های دفاعی <span class="msg-time float-end">2 هفته پیش</span></h6>
-                                                    <p class="msg-info">45% هشدار کمتر در 4 هفته گذشته</p>
+                                                    <h6 class="msg-name">Loan final acceptance <span class="msg-time float-end">2 weeks ago</span></h6>
+                                                    <p class="msg-info">The acceptance workflow of the loan finished with success and the loan request was REJECTED</p>
                                                 </div>
                                             </div>
                                         </a>
                                     </div>
                                     <a href="javascript:;">
-                                        <div class="text-center msg-footer">مشاهده همه اعلان ها</div>
+                                        <div class="text-center msg-footer">See all alerts</div>
                                     </a>
                                 </div>
                             </li>
@@ -461,172 +376,183 @@
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="javascript:;">
                                         <div class="msg-header">
-                                            <p class="msg-header-title">پیغام ها</p>
-                                            <p class="msg-header-clear ms-auto">علامت گذاری همه به عنوان خوانده شده</p>
+                                            <p class="msg-header-title">Messages</p>
+                                            <p class="msg-header-clear ms-auto">Mark all as read</p>
                                         </div>
                                     </a>
                                     <div class="header-message-list">
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">رضا افشار <span class="msg-time float-end">5 ثانیه پیش</span></h6>
-                                                    <p class="msg-info">این یک پیام استاندارد است</p>
+                                                    <h6 class="msg-name">Philip Torre <span class="msg-time float-end">15 seconds ago</span></h6>
+                                                    <p class="msg-info">Hi George, Did you attend the meeting ...</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-2.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-2.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">پریسا توکلی <span class="msg-time float-end">14 ثانیه پیش</span></h6>
-                                                    <p class="msg-info">پکیج های جدید منتشر شدند</p>
+                                                    <h6 class="msg-name">Marta Gonzales <span class="msg-time float-end">4 minuts ago</span></h6>
+                                                    <p class="msg-info">George we are going to change session ...</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-3.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-3.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">پدرام شریفی <span class="msg-time float-end">8 دقیقه پیش</span></h6>
-                                                    <p class="msg-info">نسخه جدید قالب به روز رسانی شد</p>
+                                                    <h6 class="msg-name">Mark Mclaren<span class="msg-time float-end">8 minuts ago</span></h6>
+                                                    <p class="msg-info">Here is the link to the content I ...</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-4.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-4.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">یلدا رسولی <span class="msg-time float-end">15 دقیقه پیش</span></h6>
-                                                    <p class="msg-info">اولین نسخه اپلیکیشن به درستی ایجاد شد</p>
+                                                    <h6 class="msg-name">Sarah Shepherd<span class="msg-time float-end">15 minuts ago</span></h6>
+                                                    <p class="msg-info">Sure it will make me angry if I see...</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-5.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-5.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">امیر صبوری <span class="msg-time float-end">22 دقیقه پیش</span></h6>
-                                                    <p class="msg-info">لورم ایپسوم متن ساختگی نامفهوم</p>
+                                                    <h6 class="msg-name">Ali Fionel <span class="msg-time float-end">22 minuts ago</span></h6>
+                                                    <p class="msg-info">Wow! you're awesome!</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-6.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-6.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">ساناز پگاه <span class="msg-time float-end">2 ساعت پیش</span></h6>
-                                                    <p class="msg-info">ویژگی های جدید محصول تعریف شد</p>
+                                                    <h6 class="msg-name">Lucy Winter <span class="msg-time float-end">2 hours ago</span></h6>
+                                                    <p class="msg-info">Thanks!</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-7.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-7.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">سعید صادقی <span class="msg-time float-end">4 ساعت پیش</span></h6>
-                                                    <p class="msg-info">لورم اپیسوم متن ساختگی</p>
+                                                    <h6 class="msg-name">Sebastian Nelson<span class="msg-time float-end">2 days ago</span></h6>
+                                                    <p class="msg-info">Hi!</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-8.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-8.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">فریبا سبحانی <span class="msg-time float-end">6 ساعت پیش</span></h6>
-                                                    <p class="msg-info">این مورد در 1960 ثانیه محبوب شد</p>
+                                                    <h6 class="msg-name">Olivia  Cyrus<span class="msg-time float-end">6 days ago</span></h6>
+                                                    <p class="msg-info">Take alook at here:</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-9.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-9.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">علیرضا قربانی <span class="msg-time float-end">2 ساعت پیش</span></h6>
-                                                    <p class="msg-info">نسخه جدید قالب به روز رسانی شد</p>
+                                                    <h6 class="msg-name">Michael Agosto <span class="msg-time float-end">6 days ago</span></h6>
+                                                    <p class="msg-info">No way man! you're wrong!'</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-10.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-10.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">محمد خالقی <span class="msg-time float-end">2 روز پیش</span></h6>
-                                                    <p class="msg-info">شما می توانید این پیام را ذخیره کنید</p>
+                                                    <h6 class="msg-name">Samir Vettel <span class="msg-time float-end">7 days ago</span></h6>
+                                                    <p class="msg-info">Follow Sebastian on twitter so you ...</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
                                                 <div class="user-online">
-                                                    <img src="/PanelContent/rtl/assets/images/avatars/avatar-11.png" class="msg-avatar" alt="user avatar">
+                                                    <img src="/PanelContent/ltr/assets/images/avatars/avatar-11.png" class="msg-avatar" alt="user avatar">
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">جواد علیپور <span class="msg-time float-end">5 روز پیش</span></h6>
-                                                    <p class="msg-info">لورم ایپسوم متن ساختگی نامفهوم</p>
+                                                    <h6 class="msg-name">Reza Nickson <span class="msg-time float-end">8 days ago</span></h6>
+                                                    <p class="msg-info">I have no Idea about what has been ...</p>
                                                 </div>
                                             </div>
                                         </a>
                                     </div>
                                     <a href="javascript:;">
-                                        <div class="text-center msg-footer">مشاهده همه پیغام ها</div>
+                                        <div class="text-center msg-footer">See all messages</div>
                                     </a>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <div class="user-box dropdown">
-                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/PanelContent/rtl/assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
-                            <div class="user-info ps-3">
-                                <p class="user-name mb-0">پریسا توکلی</p>
-                                <p class="designattion mb-0">طراح وب</p>
-                            </div>
+                   
+
+                      @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="user-box dropdown">
+                            <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="/PanelContent/ltr/assets/images/avatars/avatar-5.png" class="user-img" alt="user avatar">
+
+                                <div class="user-info ps-3">
+                                    <p class="user-name mb-0">
+                                        @(userFirstName != null ? userFirstName.Value : "")<text>&nbsp;</text>@(userLastName != null ? userLastName.Value : "")
+                                    </p>
+                                    <p class="designattion mb-0">@(userRoleName != null ? userRoleName.FirstOrDefault() : "")  </p>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/"><i class='lni lni-dashboard'></i><span>Dashboard</span></a>
+                                </li>
+
+                                <li>
+                                    <div class="dropdown-divider mb-0"></div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-action="Logout" asp-controller="Home">
+                                        <i class='bx bx-log-out-circle'></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <a class="nav-link" asp-action="Login" asp-controller="Home">
+                            Login
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>پروفایل</span></a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>تنظیمات</span></a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>داشبورد</span></a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>درآمد</span></a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>دانلود ها</span></a>
-                            </li>
-                            <li>
-                                <div class="dropdown-divider mb-0"></div>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="javascript:;"><i class='bx bx-log-out-circle'></i><span>خروج</span></a>
-                            </li>
-                        </ul>
-                    </div>
+
+                    }
                 </nav>
             </div>
         </header>
@@ -644,107 +570,11 @@
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
         <footer class="page-footer">
-            <p class="mb-0">کپی رایت © 2021. تمامی حقوق محفوظ است.</p>
+            <p class="mb-0"> © 2022.  All Rights Reserved.</p>
         </footer>
     </div>
     <!--end wrapper-->
-    <!--start switcher-->
-    <div class="switcher-wrapper">
-        <div class="switcher-btn">
-            <i class='bx bx-cog bx-spin'></i>
-        </div>
-        <div class="switcher-body">
-            <div class="d-flex align-items-center">
-                <h5 class="mb-0 text-uppercase">سفارشی ساز قالب</h5>
-                <button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
-            </div>
-            <hr />
-            <h6 class="mb-0">استایل های قالب</h6>
-            <hr />
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
-                    <label class="form-check-label" for="lightmode">روشن</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode">
-                    <label class="form-check-label" for="darkmode">تاریک</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="semidark">
-                    <label class="form-check-label" for="semidark">نیمه تاریک</label>
-                </div>
-            </div>
-            <hr />
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="minimaltheme" name="flexRadioDefault">
-                <label class="form-check-label" for="minimaltheme">تِم مینیمال</label>
-            </div>
-            <hr />
-            <h6 class="mb-0">رنگ هدر</h6>
-            <hr />
-            <div class="header-colors-indigators">
-                <div class="row row-cols-auto g-3">
-                    <div class="col">
-                        <div class="indigator headercolor1" id="headercolor1"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator headercolor2" id="headercolor2"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator headercolor3" id="headercolor3"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator headercolor4" id="headercolor4"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator headercolor5" id="headercolor5"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator headercolor6" id="headercolor6"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator headercolor7" id="headercolor7"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator headercolor8" id="headercolor8"></div>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <h6 class="mb-0">پس زمینه سایدبار</h6>
-            <hr />
-            <div class="header-colors-indigators">
-                <div class="row row-cols-auto g-3">
-                    <div class="col">
-                        <div class="indigator sidebarcolor1" id="sidebarcolor1"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator sidebarcolor2" id="sidebarcolor2"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator sidebarcolor3" id="sidebarcolor3"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator sidebarcolor4" id="sidebarcolor4"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator sidebarcolor5" id="sidebarcolor5"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator sidebarcolor6" id="sidebarcolor6"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator sidebarcolor7" id="sidebarcolor7"></div>
-                    </div>
-                    <div class="col">
-                        <div class="indigator sidebarcolor8" id="sidebarcolor8"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--end switcher-->
+  
 
     <!--start Bootstrap JS -->
     <script src="/PanelContent/rtl/assets/js/bootstrap.bundle.min.js"></script>

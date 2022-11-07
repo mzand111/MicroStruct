@@ -14,12 +14,25 @@ namespace MicroStruct.Web.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            Debug.WriteLine("Token");
+            Debug.WriteLine(accessToken);
+            Debug.WriteLine("end token");
             return View();
         }
-     
+        [Authorize]
+        public async Task<IActionResult> Cartable()
+        {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            Debug.WriteLine("Token");
+            Debug.WriteLine(accessToken);
+            Debug.WriteLine("end token");
+            return View();
+        }
+
         public IActionResult UserProfile()
         {
             return View();

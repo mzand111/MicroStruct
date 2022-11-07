@@ -10,5 +10,28 @@ namespace MicroStruct.Services.Identity.DbContexts
         {
 
         }
+        private static string getConnectionString()
+        {
+            var environmentName =
+              Environment.GetEnvironmentVariable(
+                  "ASPNETCORE_ENVIRONMENT");
+
+            //Console.WriteLine("2");
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings" + (String.IsNullOrWhiteSpace(environmentName) ? "" : "." + environmentName) + ".json", false).Build();
+
+            return config.GetConnectionString("DefaultConnection");
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //Console.WriteLine("4");
+            optionsBuilder.UseSqlServer(getConnectionString());
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+           
+
+        }
     }
 }
