@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+
+    <title>@ViewData["Title"] - Loan Flow Transparency</title>
+
+    <link rel="icon" type="image/x-icon" href="~/panel/imgs/logo/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/panel/imgs/logo/android-chrome-512x512.png" />
+    <!--plugins select2 -->
+    <link href="/Panel/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="/Panel/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
+
+ @*   <link rel="stylesheet" href="~/panel/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/panel/css/bootstrap-extended.css" />*@
+
+  
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+
+
+    <link rel="stylesheet" href="~/panel/css/icons.css" />
+    <link rel="stylesheet" href="~/panel/plugins/input-tags/css/tagsinput.css" />
+
+    <link rel="stylesheet" href="~/panel/plugins/notifications/css/lobibox.min.css" />
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/panel/css/app.css" />
+
+
+
+    @RenderSection("link", false)
+
+</head>
+<body >
+    <div class="wrapper">
+        <div class="authentication-header"></div>
+        <div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
+            <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+
+
+    <script src="~/panel/plugins/persiandatepicker/persian-date-0.1.8.min.js"></script>
+    <script src="~/panel/plugins/persiandatepicker/persian-datepicker-0.4.5.min.js"></script>
+    <script src="~/panel/plugins/select2/js/select2.min.js"></script>
+    <script src="~/panel/plugins/input-tags/js/tagsinput.js"></script>
+
+    <!--notification js -->
+    <script src="~/panel/plugins/notifications/js/lobibox.min.js"></script>
+    <script src="~/panel/plugins/notifications/js/notifications.min.js"></script>
+    <!--notification js -->
+    <!--bootBox js -->
+    <script src="~/lib/BootBox/bootbox.min.js"></script>
+    <!--bootBox js -->
+    <script src="~/js/site.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

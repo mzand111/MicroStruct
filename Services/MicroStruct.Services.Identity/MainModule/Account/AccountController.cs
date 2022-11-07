@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Identity;
 using MicroStruct.Services.Identity.Models;
 using MicroStruct.Services.Identity.MainModule.Account;
 using System.Security.Claims;
+using DNTCaptcha.Core;
 
 namespace IdentityServerHost.Quickstart.UI
 {
@@ -73,9 +74,14 @@ namespace IdentityServerHost.Quickstart.UI
         [HttpGet]
         public async Task<IActionResult> Login(string returnUrl)
         {
+            if (TempData.ContainsKey("ResetSuccessFull"))
+            {
+                string? x = TempData["ResetSuccessFull"].ToString();
+                ViewBag.ResetSuccessFull = x;
+            }
             // build a model so we know what to show on the login page
             var vm = await BuildLoginViewModelAsync(returnUrl);
-
+            vm.EnableLocalLogin = true;
             if (vm.IsExternalLoginOnly)
             {
                 // we only have one option for logging in and it's an external provider
@@ -85,11 +91,18 @@ namespace IdentityServerHost.Quickstart.UI
             return View(vm);
         }
 
+
+       
+
+
         /// <summary>
         /// Handle postback from username/password login
         /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateDNTCaptcha(ErrorMessage = "مقدار عبارت امنیتی را درست وارد کنید .",
+                    CaptchaGeneratorLanguage = Language.English,
+                    CaptchaGeneratorDisplayMode = DisplayMode.ShowDigits)]
         public async Task<IActionResult> Login(LoginInputModel model, string button)
         {
             // check if we are in the context of an authorization request

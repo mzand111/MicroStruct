@@ -1,87 +1,177 @@
+@using DNTCaptcha.Core
+
 @model LoginViewModel
+@addTagHelper *, DNTCaptcha.Core
 
-<div class="login-page">
-    <div class="lead">
-        <h1>Login</h1>
-        <p>Choose how to login</p>
-    </div>
+@{
+    ViewData["Title"] = "Login ";
+}
 
-    <partial name="_ValidationSummary" />
+<div class="col mx-auto" style="z-index:1">
+    <div class="card" style="margin-top:25px">
+        <div class="card-body">
+            <div class="p-4 rounded">
+                <div class="text-center">
+                    <h3 class="">Login</h3>
+                    <img class="logo_banader" src="~/panel/imgs/logo/logo-img.png" alt="logo_banader" />
+                    <br />
+                   
+                </div>
+                <br />
+                <partial name="_ValidationSummary" />
 
-    <div class="row">
-
-        @if (Model.EnableLocalLogin)
-        {
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Local Account</h2>
+                @if (ViewBag.ResetSuccessFull != null)
+                {
+                    <div style="background-color:white" class="text-center">
+                        <h3 style="color:white; background-color:forestgreen">@ViewBag.ResetSuccessFull</h3>
                     </div>
+                }
 
-                    <div class="card-body">
-                        <form asp-route="Login">
+                <div class="form-body">
+                    @if (Model.EnableLocalLogin)
+                    {
+                        <form class="row g-3 needs-validation" asp-route="Login">
                             <input type="hidden" asp-for="ReturnUrl" />
 
-                            <div class="form-group">
-                                <label asp-for="Username"></label>
-                                <input class="form-control" placeholder="Username" asp-for="Username" autofocus>
+                            <div class="col-12">
+                                <label asp-for="Username" class="form-label">User name:</label>
+                                <input data-val="true"
+                                   required
+                                 
+                                   maxlength="60"
+                                   minlength="4"
+                                   data-msg-minlength="Username is at least 4 characters"
+                                   data-msg-maxlength="Username is at least 60 characters"
+                                   data-val-required="Enter your username"
+                                   data-msg-pattern="Invalid username" class="form-control" placeholder="Username" asp-for="Username" id="Username" autofocus>
+                                <div class="invalid-feedback" data-valmsg-for="Username" data-valmsg-replace="true" for="Username"></div>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Password"></label>
-                                <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
+
+                            <div class="col-12">
+                                <label asp-for="Password" for="Password" class="form-label">Password</label>
+                                <div class="input-group" id="show_hide_password">
+                                    <input data-msg-minlength="Password is at least 6 characters" minlength="6" data-val-required="Please enter password" type="password" class="form-control border-end-0" placeholder="Password" id="Password" asp-for="Password" required autocomplete="off">
+                                    <a id="myButton" class="input-group-text bg-transparent"><i class='bx bx-hide'></i> </a>
+                                    <div class="invalid-feedback" data-valmsg-for="Password" data-valmsg-replace="true" for="Password"></div>
+
+                                </div>
                             </div>
-                            @if (Model.AllowRememberLogin)
+                            <div class="col-12" style="color:aqua">
+
+                                <dnt-captcha asp-captcha-generator-max="999999"
+                                         asp-captcha-generator-min="111111"
+                                         asp-captcha-generator-language="English"
+                                         asp-captcha-generator-display-mode="ShowDigits"
+                                         asp-use-relative-urls="true"
+                                         asp-placeholder="Security code as a number"
+                                         asp-validation-error-message="Please enter the security code as a number."
+                                         asp-font-name="Tahoma"
+                                         asp-font-size="20"
+                                         asp-fore-color="#333333"
+                                         asp-back-color="#FCF6F5FF"
+                                         asp-text-box-class="form-control"
+                                         asp-text-box-template="<div class='input-group'><span class='input-group-text'><span class='bi-lock'></span></span>{0}</div>"
+                                         asp-validation-message-class="text-danger"
+                                         asp-refresh-button-class="bi-arrow-counterclockwise btn-lg"
+                                         asp-show-refresh-button="true"
+                                         asp-dir="ltr" />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="">
+                                    @if (Model.AllowRememberLogin)
+                                    {
+                                        <div class="form-group">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" asp-for="RememberLogin"
+                                               id="flexSwitchCheckChecked">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked" asp-for="RememberLogin">
+                                                   Remember me
+                                                </label>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <a href="/Account/Forgotpassword">Forgot your password?</a>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-grid">
+                                    <button class="btn btn-primary" name="button" value="login">
+                                        <i class="bx bxs-lock-open"></i>Login
+                                    </button>
+
+
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr />
+
+
+                    }
+                    <div class="quizRegister">
+                        Not registered yet? <a href="/Account/register">Register</a><div>
+                            @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
                             {
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" asp-for="RememberLogin">
-                                        <label class="form-check-label" asp-for="RememberLogin">
-                                            Remember My Login
-                                        </label>
-                                    </div>
+                                <div class="alert alert-warning">
+                                    <strong>Invalid login request</strong>
+                                    There are no login schemes configured for this request.
                                 </div>
                             }
-                            <button class="btn btn-primary" name="button" value="login">Login</button>
-                            <button class="btn btn-secondary" name="button" value="cancel">Cancel</button>
-                        </form>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-        }
-
-        @if (Model.VisibleExternalProviders.Any())
-        {
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>External Account</h2>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-inline">
-                            @foreach (var provider in Model.VisibleExternalProviders)
-                            {
-                                <li class="list-inline-item">
-                                    <a class="btn btn-secondary"
-                                       asp-controller="External"
-                                       asp-action="Challenge"
-                                       asp-route-scheme="@provider.AuthenticationScheme"
-                                       asp-route-returnUrl="@Model.ReturnUrl">
-                                        @provider.DisplayName
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        }
-
-        @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
-        {
-            <div class="alert alert-warning">
-                <strong>Invalid login request</strong>
-                There are no login schemes configured for this request.
-            </div>
-        }
+        </div>
     </div>
 </div>
+@section scripts{
+
+
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#show_hide_password a").on('click', function (event) {
+                event.preventDefault();
+                if ($('#show_hide_password input').attr("type") == "text") {
+                    $('#show_hide_password input').attr('type', 'password');
+                    $('#show_hide_password i').addClass("bx-hide");
+                    $('#show_hide_password i').removeClass("bx-show");
+                } else if ($('#show_hide_password input').attr("type") == "password") {
+                    $('#show_hide_password input').attr('type', 'text');
+                    $('#show_hide_password i').removeClass("bx-hide");
+                    $('#show_hide_password i').addClass("bx-show");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+}

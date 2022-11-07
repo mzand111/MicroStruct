@@ -1,0 +1,12 @@
+﻿first of all instal commandlets in powershell: 
+dotnet tool install --global dotnet-ef
+
+dotnet ef migrations add [YourMigrationName] -c LoanContext -o Data/SqlMigrations -- "Data Source =.\sql19; Initial Catalog = Microstruct_Workflow; Integrated Security = true; TrustServerCertificate = Yes"
+dotnet ef database update -c LoanContext -- "Data Source =.\sql19; Initial Catalog = Microstruct_Workflow; Integrated Security = true; TrustServerCertificate = Yes"
+dotnet ef database update -c ElsaContext -- "Data Source =.\sql19; Initial Catalog = Microstruct_Workflow; Integrated Security = true; TrustServerCertificate = Yes"
+//FacilityContext
+
+
+In Package management console
+add-migration [YourMigrationName] -Context LoanContext
+update-database -Context LoanContext
