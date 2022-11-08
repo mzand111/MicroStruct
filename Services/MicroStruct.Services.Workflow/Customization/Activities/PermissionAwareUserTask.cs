@@ -17,31 +17,29 @@ using System.Reflection;
 namespace MicroStruct.Services.WorkflowApi.Customization.Activities
 {
     [Trigger(
-        DisplayName = "مرحله بررسی تایید درخواست",
-        Category = "مرحله تایید کاربری بر اساس دسترسی",
-        Description = "این نوع از وضعیت بر اساس ارسال رخدادها بوسیله کاربر نظیر تایید، رد یا بازگشت ایجاد میشود",
+        DisplayName = "Request Checking Step",
+        Category = "Permission-Centric User Interaction Check Steps",
+        Description = "With this kind of user task you can allow a user to accept/reject/turn back of the context object and also set other permissions due to the user roles",
         Outcomes = new string[0]
     )]
     public class PermissionAwareUserTask : UserTask
     {
         private readonly LoanContext _businessContext;
 
-        [ActivityInput(Hint = "عنوان رسمی مرحله در چرخه تایید", Label = "عنوان رسمی")]
+        [ActivityInput(Hint = "This name appears to the business context's reports", Label = "Formal Name")]
         public string FormalName { get; set; }
-        [ActivityInput(Hint = "دسترسی نقشها در این مرحله", Label = "دسترسی نقشها", UIHint = "role-permission-editor", Category = "دسترسیها")]
+        [ActivityInput(Hint = "Role permissions in this step", Label = "Role Permissions", UIHint = "role-permission-editor", Category = "Permissions")]
         public string Permissions { get; set; }
 
-        [ActivityInput(Hint = "وضعیت کلی تایید آیتم در این مرحله از چرخه",
-            Label = "وضعیت تایید",
+        [ActivityInput(Hint = "The flow total acceptance state in this step",
+            Label = "Acceptance State",
             UIHint = ActivityInputUIHints.Dropdown,
             OptionsProvider = typeof(WorkflowAcceptanceStatusOptionsProvider),
            DefaultValue = "processing"
            )]
         [DefaultValue("processing")]
         public string AcceptanceStatusInThisState { get; set; }
-        //[ActivityInput(Hint = "تنظیمات رخدادهای این مرحله", Label = "تنظیمات رخدادها",UIHint = "actions-settings-editor"))]
-        //public string ActionSettings { get; set; }
-
+      
         public PermissionAwareUserTask(IContentSerializer serializer, IDbContextFactory<LoanContext> dbContextFactory) : base(serializer)
         {
             this._businessContext = dbContextFactory.CreateDbContext();

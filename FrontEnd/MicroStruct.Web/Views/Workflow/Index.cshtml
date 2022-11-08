@@ -1,0 +1,314 @@
+﻿@page ""
+@using MicroStruct.Web.Config
+
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Http
+@inject IOptions<ServiceUrls> serviceUrls;
+@{
+
+    //var serverUrl = $"{Request.Scheme}://{Request.Host}";
+    var serverUrl = serviceUrls.Value.WorkflowApi;
+    var basePath = "";
+
+    var context = new HttpContextAccessor().HttpContext;
+    var accessToken = await context.GetTokenAsync("access_token");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workflows</title>
+    @*<base href="/">*@
+    <link rel="icon" type="image/png" sizes="32x32" href="@basePath/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="@basePath/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/assets/images/favicon-16x16.png">
+    <link rel="stylesheet" href="@basePath/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/assets/fonts/inter/inter.css">
+    <link rel="stylesheet" href="@basePath/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/elsa-workflows-studio.css">
+    <script src="@basePath/_content/Elsa.Designer.Components.Web/monaco-editor/min/vs/loader.js"></script>
+    <script type="module" src="@basePath/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/elsa-workflows-studio.esm.js"></script>
+    <script type="text/javascript" src="/scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/lib/workflow/permissionManagerCtrl.js"></script>
+    <style>
+        .rolesSelectDdl {
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+
+        .acctionSelectBox {
+            width: 45%;
+            height: 300px;
+        }
+
+        .acctionSelectBoxFrom {
+            float: left;
+        }
+
+        .acctionSelectBoxTo {
+            float: right;
+        }
+
+        .acctionSelectBoxMiddleColumn {
+            vertical-align: middle;
+            width: 10% !important;
+            text-align: center;
+            float: left;
+        }
+
+            .acctionSelectBoxMiddleColumn button {
+                clear: both;
+                width: 85%;
+                border: 1px dashed navy;
+                font-weight: bolder;
+                margin: 5px;
+            }
+
+                .acctionSelectBoxMiddleColumn button:disabled,
+                .acctionSelectBoxMiddleColumn button[disabled] {
+                    background-color: #cccccc;
+                    color: #666666;
+                }
+
+        .actionSelectCtrl {
+            height: 270px;
+            width: 100%;
+            padding: 0;
+            background-image: none;
+        }
+
+        .elsa-text-left {
+        }
+
+        .elsa-right-12 {
+        }
+
+        .elsa-rounded-l-md {
+        }
+
+        .elsa-rounded-r-md {
+        }
+
+        .elsa-space-x-8 > :not([hidden]) ~ :not([hidden]) {
+        }
+
+        select {
+        }
+
+        .elsa-right-7 {
+        }
+
+        .lines-content {
+        }
+    </style>
+</head>
+
+<body class="h-screen" style="background-size: 30px 30px; background-image: url(@basePath.TrimStart('/')/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/assets/images/tile.png); background-color: #FBFBFB;">
+    <elsa-studio-root server-url="@serverUrl" base-path="/workflow" monaco-lib-path="@basePath.TrimStart('/')/_content/Elsa.Designer.Components.Web/monaco-editor/min">
+        <elsa-studio-dashboard></elsa-studio-dashboard>
+    </elsa-studio-root>
+
+
+    <script type="module">
+
+
+        function MyCustomInputDriver(elsaStudio) {
+
+            // Get convenience methods.
+            const { getOrCreateProperty, htmlToElement } = elsaStudio;
+
+            // Implement the display method, which receives the activity model and the property for which the editor must be rendered.
+            this.display = (activity, propertyDescriptor) => {
+
+                console.log(activity);
+                console.log(propertyDescriptor);
+
+                // Get the property model.
+                const propertyModel = getOrCreateProperty(activity, propertyDescriptor.name);
+                console.log(propertyModel);
+
+                // Get the configured default syntax name.
+                const defaultSyntax = 'Literal';
+
+                // Get the current property value for the default syntax.
+                const currentValue = propertyModel.expressions[defaultSyntax] || '';
+                console.log(currentValue);
+
+                // Create a property editor element (for displaying label, hint and syntax toggle).
+                // This will wrap our custom control.
+                const propertyEditor = document.createElement('elsa-property-editor');
+
+                // Our custom input element control. Can be anything you want.
+                // Using HTML string to easily construct an actual element object.
+                // Better yet would be to implement a component with Stencil, Angular or React if you;re using any of these frameworks.
+                const inputHtml =
+                    `<div id="permissionedit" style="width:100%;">
+                                                                                          <div>
+                                                                                           Roles:
+
+                                                                                              <select data-permissionselect-role="roles"
+                                                                                                     data-permissionselect-activityId="${activity.activityId}"
+                                                                                                     class="rolesSelectDdl block focus:elsa-ring-blue-500 focus:elsa-border-blue-500 elsa-w-full elsa-shadow-sm sm:elsa-text-sm elsa-border-gray-300 elsa-rounded-md">
+                                                                                                        <option value="" selected disabled hidden>Please Select ...</option>
+                                                                                                        <option value="Admin"> Admin </options>
+                                                                                                         <option value="Customer"> Customer </options>
+                                                                                                         <option value="Committee_Admin">Committee Admin  </options>
+                                                                                                        <option value="Committee_User"> Committee Expert User  </options>
+                                                                                              <select>
+                                                                                          </div>
+                                                                                          <div style="direction:ltr">
+                                                                                          <div class="acctionSelectBox acctionSelectBoxFrom">
+                                                                                           <select data-permissionselect-role="notAssignedRoles" size="10" class="actionSelectCtrl focus:elsa-ring-blue-500 focus:elsa-border-blue-500 elsa-w-full elsa-shadow-sm sm:elsa-text-sm elsa-border-gray-300 elsa-rounded-md"">
+
+                                                                                           <select>
+                                                                                          </div>
+                                                                                          <div class="acctionSelectBox acctionSelectBoxMiddleColumn">
+                                                                                              <button data-permissionselect-role="assign" class="elsa-w-full elsa-inline-flex elsa-justify-center elsa-rounded-md elsa-border elsa-border-gray-300 elsa-shadow-sm elsa-px-4 elsa-py-2 elsa-bg-white elsa-text-base elsa-font-medium elsa-text-gray-700 hover:elsa-bg-gray-50 focus:elsa-outline-none focus:elsa-ring-2 focus:elsa-ring-offset-2 focus:elsa-ring-blue-500 sm:elsa-mt-0 sm:elsa-ml-3 sm:elsa-w-auto sm:elsa-text-sm"> > </button>
+                                                                                              <button data-permissionselect-role="deAssign" class="elsa-w-full elsa-inline-flex elsa-justify-center elsa-rounded-md elsa-border elsa-border-gray-300 elsa-shadow-sm elsa-px-4 elsa-py-2 elsa-bg-white elsa-text-base elsa-font-medium elsa-text-gray-700 hover:elsa-bg-gray-50 focus:elsa-outline-none focus:elsa-ring-2 focus:elsa-ring-offset-2 focus:elsa-ring-blue-500 sm:elsa-mt-0 sm:elsa-ml-3 sm:elsa-w-auto sm:elsa-text-sm"> < </button>
+                                                                                              <button data-permissionselect-role="assignAll" class="elsa-w-full elsa-inline-flex elsa-justify-center elsa-rounded-md elsa-border elsa-border-gray-300 elsa-shadow-sm elsa-px-4 elsa-py-2 elsa-bg-white elsa-text-base elsa-font-medium elsa-text-gray-700 hover:elsa-bg-gray-50 focus:elsa-outline-none focus:elsa-ring-2 focus:elsa-ring-offset-2 focus:elsa-ring-blue-500 sm:elsa-mt-0 sm:elsa-ml-3 sm:elsa-w-auto sm:elsa-text-sm"> >> </button>
+                                                                                              <button data-permissionselect-role="deAssignAll" class="elsa-w-full elsa-inline-flex elsa-justify-center elsa-rounded-md elsa-border elsa-border-gray-300 elsa-shadow-sm elsa-px-4 elsa-py-2 elsa-bg-white elsa-text-base elsa-font-medium elsa-text-gray-700 hover:elsa-bg-gray-50 focus:elsa-outline-none focus:elsa-ring-2 focus:elsa-ring-offset-2 focus:elsa-ring-blue-500 sm:elsa-mt-0 sm:elsa-ml-3 sm:elsa-w-auto sm:elsa-text-sm"> << </button>
+                                                                                          </div>
+                                                                                          <div class="acctionSelectBox acctionSelectBoxTo">
+                                                                                           <select data-permissionselect-role="assignedRoles" size="10" class="actionSelectCtrl focus:elsa-ring-blue-500 focus:elsa-border-blue-500 elsa-w-full elsa-shadow-sm sm:elsa-text-sm elsa-border-gray-300 elsa-rounded-md"">
+
+                                                                                           <select>
+                                                                                          </div>
+                                                                                          <input type="text" style="width:100%;visibility: collapse;height: 0;" data-permissionselect-role="value" class="" value='${currentValue}' />
+                                                                                          </div>
+
+                                                                                      </div>
+                                                                                                                                                   `;
+
+                // Create an actual input element from the HTML string.
+                const inputElement = htmlToElement(inputHtml);
+                //console.log("1");
+                // Add the custom input control element to the property editor as a child.
+                propertyEditor.append(inputElement);
+
+                // Initialize the property editor.
+                propertyEditor.propertyDescriptor = propertyDescriptor;
+                propertyEditor.propertyModel = propertyModel;
+                //console.log("2");
+                // Setup change handler for custom control that updates the property model.
+                //inputElement.addEventListener('change', (e) => {
+                //    console.log('changed');
+                //    const input = e.currentTarget;
+                //    console.log(e.currentTarget);
+                //    console.log( $(e.currentTarget).parent().parent().find('[data-permissionselect-role="value"]').val());
+                //    propertyModel.expressions[defaultSyntax] = input.value;
+                //});
+                inputElement.addEventListener('DOMAttrModified', (e) => {
+                    console.log('changed');
+                    const input = e.currentTarget;
+                    console.log(e.currentTarget);
+                    var finalVal = $(e.currentTarget).parent().parent().find('[data-permissionselect-role="value"]').val();
+                    console.log(finalVal);
+                    propertyModel.expressions[defaultSyntax] = finalVal;
+                });
+                // console.log("3");
+
+                // return the created custom control.
+                return propertyEditor;
+            };
+        }
+        function CustomMiddlewarePlugin(elsaStudio) {
+            const { eventBus } = elsaStudio;
+            // alert('sssss');
+            ////eventBus.on('activity-descriptor-displaying', e => {
+            ////    // Register a sample middleware.
+            ////   // console.log("activity-descriptor-displaying");
+
+            ////});
+            ////eventBus.on('activity-design-displaying', e => {
+            ////    // Register a sample middleware.
+            ////    //console.log("activity-design-displaying");
+
+            ////});
+            ////eventBus.on('show-activity-picker', e => {
+            ////    // Register a sample middleware.
+            ////    //console.log("show-activity-picker");
+
+            ////});
+            ////eventBus.on('show-activity-editor', e => {
+            ////    // Register a sample middleware.
+            ////    console.log("show-activity-editor");
+
+            ////});
+            eventBus.on('activity-design-displaying', e => {
+
+            });
+
+
+            eventBus.on('activity-editor-rendering', e => {
+                // Register a sample middleware.
+                console.log("activity-editor.rendering");
+                setTimeout(function () {
+                    var availablePermissionsGeneral = [
+                        'Accept',
+                        'Reject',
+                        'TurnBack',
+                        'View',
+                        'Edit',
+                        'ViewDocuments',
+                        'EditDocuments',
+                        'Comment',
+                        'SetDirectDepartmentExpert',
+                        'SetSecondaryCommitteeSession',
+                        'SetPrimaryCommitteeSession',
+                        'SetSecondaryCommitteeSessionResults',
+                        'SetPrimaryCommitteeSessionResults',
+                        'AddGeneralDocuments',
+                        'EditGeneralDocuments',
+                        'ViewGeneralDocuments',
+                        'SetThirdParty'
+                    ];
+                    setPermCtrl("permissionedit", availablePermissionsGeneral, "permissionselect");
+
+                }, 500);
+
+            }
+            );
+        }
+
+        function MyCustomInputPlugin(elsaStudio) {
+            // Register custom driver.
+            elsaStudio.propertyDisplayManager.addDriver('role-permission-editor', () => new MyCustomInputDriver(elsaStudio));
+        }
+        function AuthorizationMiddlewarePlugin(elsaStudio) {
+            const eventBus = elsaStudio.eventBus;
+
+            eventBus.on('http-client-created', e => {
+                // Register Axios middleware.
+
+                e.service.register({
+                    onRequest(request) {
+                        console.log(request);
+                        if (request.headers) {
+                            request.headers.Authorization = 'Bearer ' + '@accessToken';
+                        } else {
+                            request.headers = { 'Authorization': 'Bearer ' + '@accessToken' };
+                        }
+                        return request;
+                    }
+                });
+            });
+        }
+        function FinancialStepInputPlugin(elsaStudio) {
+            // Register custom driver.
+            elsaStudio.propertyDisplayManager.addDriver('role-financialpermission-editor', () => new FinancialInputDriver(elsaStudio));
+        }
+        //import { WebhooksPlugin } from "@basePath/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/index.esm.js";
+        const elsaStudioRoot = document.querySelector('elsa-studio-root');
+
+        elsaStudioRoot.addEventListener('initializing', e => {
+            const elsaStudio = e.detail;
+            //elsaStudio.pluginManager.registerPlugin(WebhooksPlugin);
+            elsaStudio.pluginManager.registerPlugin(MyCustomInputPlugin);
+            elsaStudio.pluginManager.registerPlugin(CustomMiddlewarePlugin);
+            elsaStudio.pluginManager.registerPlugin(AuthorizationMiddlewarePlugin);
+        });
+
+    </script>
+
+</body>
+
+</html>

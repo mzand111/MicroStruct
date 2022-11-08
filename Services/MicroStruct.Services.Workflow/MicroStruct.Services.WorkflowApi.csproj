@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="HttpServices\Core\" />
     <Folder Include="Models\Dtos\" />
   </ItemGroup>
 

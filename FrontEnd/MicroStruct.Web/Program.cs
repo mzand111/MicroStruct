@@ -12,9 +12,11 @@ using System.Data;
 using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
+var mvcBuilder = builder.Services.AddRazorPages();
+
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
-
+mvcBuilder.AddRazorRuntimeCompilation();
 
 string loggerConnectionString = configuration.GetConnectionString("SeriLogDB");
 
@@ -63,6 +65,7 @@ builder.Logging.AddSerilog(Log.Logger);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IWorkflowService, WorkflowService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services
     .AddAuthentication(options =>
     {
@@ -98,19 +101,21 @@ try
     // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
     {
-        //app.UseExceptionHandler("/Home/Error");
+        app.UseExceptionHandler("/Home/Error");
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
     }
     else
     {
-        //app.UseDeveloperExceptionPage();
+        app.UseDeveloperExceptionPage();
+      
     }
 
     app.UseHttpsRedirection();
     app.UseStaticFiles();
 
     app.UseRouting();
+    app.UseCors();
     app.UseAuthentication();
     app.Use(async (httpContext, next) =>
     {
@@ -131,9 +136,13 @@ try
     app.UseAuthorization();
 
 
+    app.MapControllerRoute(name: "workflow",
+               pattern: "workflow/{*workflow-definitions}",
+               defaults: new { controller = "workflow", action = "index" });
     app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
+    app.UseSerilogRequestLogging();
 
     app.Run();
 }
