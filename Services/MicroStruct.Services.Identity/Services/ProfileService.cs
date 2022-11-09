@@ -31,6 +31,8 @@ namespace MicroStruct.Services.Identity.Services
             ClaimsPrincipal userClaims = await _userClaimPrincipalFactory.CreateAsync(user);
             List<Claim> claims = userClaims.Claims.ToList();
             claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
+            claims.Add(new Claim(JwtClaimTypes.Name, user.UserName));
+            claims.Add(new Claim("name", user.UserName));
             claims.Add(new Claim(JwtClaimTypes.FamilyName, user.LastName));
             claims.Add(new Claim(JwtClaimTypes.GivenName, user.FirstName));
             if (_userManager.SupportsUserRole)

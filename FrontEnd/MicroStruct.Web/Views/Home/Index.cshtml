@@ -1,8 +1,161 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@{
+    System.Security.Claims.Claim userRoleName = null;
+    if (User.Identity.IsAuthenticated)
+    {
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+
+        if (claimsIdentity != null)
+        {
+            userRoleName = claimsIdentity.FindFirst("role");
+
+        }
+    }
+    else
+    {
+
+    }
+}
+<link href="/css/msdropdown/dd.css" rel="stylesheet" />
+<link href="/css/jqueryui/jquery-ui.css" rel="stylesheet" />
+<link href="/css/jqueryui/jquery-ui.structure.css" rel="stylesheet" />
+<link href="/css/jqueryui/jquery-ui.theme.css" rel="stylesheet" />
+<link href="/css/dashboard/dashboard.css" rel="stylesheet" />
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    @if (userRoleName != null && userRoleName.Value.ToLower() == "customer")
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+
+            <div class="col">
+                <div class="card radius-10 bg-success heightWidgetCustomer">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-white">مجموع باز پرداخت تسهیلات تا کنون</p>
+                                <br />
+                                <h4 class="my-1 text-white">در دست ساخت</h4>
+                            </div>
+                            <div class="widgets-icons bg-white text-success ms-auto">
+                                <i class="bx bxs-wallet"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10 bg-info heightWidgetCustomer">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-dark">تعداد بازدید شما از سایت </p>
+                                <br />
+                                <h4 class="my-1 text-dark" id="loginCount">درحال دریافت</h4>
+                            </div>
+                            <div class="widgets-icons bg-white text-dark ms-auto">
+                                <i class="bx bxs-group"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10 bg-danger heightWidgetCustomer">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-white">مرحله فعلی چرخه دریافت تسهیلات</p>
+                                <br />
+                                <div id="companyLatestInProgressFacilityState" class="text-white"><h4 class="my-1 text-white">درحال دریافت</h4></div>
+                            </div>
+                            <div class="widgets-icons bg-white text-danger ms-auto">
+                                <i class="bx bxs-binoculars"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10 bg-warning heightWidgetCustomer">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-dark">نرخ پیشرفت مراحل تسهیلات</p>
+                                <br />
+                                <div id="companyLatestInProgressFacilityProgressPercent"><h4 class="my-1 text-dark">درحال دریافت</h4></div>
+                            </div>
+                            <div class="widgets-icons bg-white text-dark ms-auto">
+                                <i class="bx bx-line-chart-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col">
+
+            @if (User.Identity.IsAuthenticated && userRoleName != null && userRoleName.Value.ToLower() == "customer")
+            {
+                <div id="FacilityNotApprovedForCustomer"></div>
+            }
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+            @Html.Partial("~/Views/shared/Dashboard/_dashboardSchema.cshtml")
+
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script>
+        var dashboardWidgets = [];
+    </script>
+
+    <script src="/lib/jQueryUI/jquery-ui.min.js"></script>
+    <script src="/lib/MSDropdown/jquery.dd.min.js"></script>
+    <script src="/lib/print/jquery.printElementModified.js"></script>
+    <script src="/lib/Dashboard/dashboardStrs.js"> </script>
+    <script src="/lib/Dashboard/dashboardModuleContainer.js"> </script>
+    <script src="/lib/Dashboard/widgetInstantiator.js"> </script>
+    <script src="/lib/dashboard/widgets/w_averagesteptimes.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            //GetAllFacilityRequests();
+
+            var moduleContainer = jQuery(".cpPanel").dashboardModuleContainer({
+                dashboardTabsType: 'maindash',
+            });
+            console.log(moduleContainer);
+            moduleContainer.reBind('maindash');
+        })
+    </script>
+
+    <script>
+
+        $(function () {
+            $('[data-bs-toggle="popover"]').popover();
+            $('[data-bs-toggle="tooltip"]').tooltip();
+
+
+        })
+
+    </script>
+
+
+}
+

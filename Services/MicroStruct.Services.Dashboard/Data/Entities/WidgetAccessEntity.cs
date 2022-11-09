@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MicroStruct.Services.Dashboard.Data.Entities
 {
-    [Table("WidgetAccess")]
+    [Table("WidgetAccesses")]
     public class WidgetAccessEntity:WidgetAccess
     {
         public string RoleName { get; set; }

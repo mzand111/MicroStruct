@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MicroStruct.Services.Dashboard.Data.Entities
 {
-    [Table("Widget")]
+    [Table("Widgets")]
     public class WidgetEntity:Widget
     {
         public WidgetEntity()

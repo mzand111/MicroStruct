@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication;
 using MicroStruct.Web.Config;
 using MicroStruct.Web.Library.Middlewares;
-using MicroStruct.Web.Services;
+using MicroStruct.Web.Library.Startup;
 using Serilog;
 using Serilog.Context;
 using Serilog.Events;
@@ -64,8 +64,12 @@ builder.Logging.AddSerilog(Log.Logger);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IWorkflowService, WorkflowService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpServices(false, 5);
+
+
 builder.Services
     .AddAuthentication(options =>
     {

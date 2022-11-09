@@ -573,7 +573,23 @@ else
         </footer>
     </div>
     <!--end wrapper-->
-  
+    <div class="modal" id="alertProvider" role="dialog" aria-hidden="true" style="z-index:2060">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertProvider_title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alertProvider_inner" class="alert border-0 border-start border-5 border-success alert-dismissible fade show py-2" role="alert">
+                        <div id="alertProvider_message">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!--start Bootstrap JS -->
     <script src="/PanelContent/rtl/assets/js/bootstrap.bundle.min.js"></script>
@@ -619,7 +635,9 @@ else
 	<script src="/PanelContent/rtl/assets/plugins/notifications/js/lobibox.min.js"></script>
 	<script src="/PanelContent/rtl/assets/plugins/notifications/js/notifications.min.js"></script>
 	<script src="/PanelContent/rtl/assets/plugins/notifications/js/notification-custom-script.js"></script>
-
+    <script src="/lib/common/htmlminify.js"></script>
+    <script src="/lib/common/notify.min.js"></script>
+    <script src="/js/site.js"></script>
      <!--end plugins-->
 
     <!--start app JS-->
