@@ -24,7 +24,7 @@
 <link href="/css/jqueryui/jquery-ui.structure.css" rel="stylesheet" />
 <link href="/css/jqueryui/jquery-ui.theme.css" rel="stylesheet" />
 <link href="/css/dashboard/dashboard.css" rel="stylesheet" />
-
+<link href="/lib/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -130,7 +130,20 @@
     <script src="/lib/Dashboard/dashboardStrs.js"> </script>
     <script src="/lib/Dashboard/dashboardModuleContainer.js"> </script>
     <script src="/lib/Dashboard/widgetInstantiator.js"> </script>
+   
+
+    <script src="/lib/apexcharts-bundle/js/apexcharts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <script src="/lib/dashboard/widgets/w_averagesteptimes.js"></script>
+    <script src="/lib/dashboard/widgets/w_canadageographicalmapdistribution.js"></script>
+    <script src="/lib/dashboard/widgets/w_topSectors.js"></script>
+    <script src="/lib/Dashboard/widgets/w_siteVisits.js"> </script>
+    <script src="/lib/Dashboard/widgets/w_amountBySectors.js"> </script>
+
+    <script src="/lib/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="/lib/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="/lib/vectormap/jquery-jvectormap-ca-mill.js"></script>
 
     <script>
 

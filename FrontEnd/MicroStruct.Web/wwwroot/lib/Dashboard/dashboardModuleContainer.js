@@ -453,8 +453,7 @@
                             });
 
                             widgets.push(g);
-                            console.log(data[i]);
-                            console.log(g);
+                            
                         } catch (exception) {
                             if (widgets[i]) {
                                 console.log("error loading widget '" + widgets[i].getWidget().title + "' With ID :'" + widgets[i].getWidget().id + "' error :" + exception);

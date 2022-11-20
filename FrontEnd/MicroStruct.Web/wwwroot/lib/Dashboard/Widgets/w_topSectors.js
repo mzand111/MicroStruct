@@ -3,15 +3,14 @@
 
 
 (function ($) {
-    $.fn.w_averageStepTimes = function (options) {
+    $.fn.w_topSectors = function (options) {
 
 
         var widgetArea = this;
 
         var settings = $.extend({
             widget: null,
-            getAverageStepTimesApiAddress: '/api/cartable/GetUserCartableSummery',
-
+          
         }, options);
 
 
@@ -28,16 +27,16 @@
             var options = {
                 series: [{
                     name: 'Finished Flows',
-                    data: [8.3, 2.7, 7.3, 12, 17.3,18.2]
+                    data: [18, 12, 9, 5, 3 , 3, 2, 2]
 
                 }, {
                     name: 'In Progress',
-                    data: [6, 3.3, 5.1, 15.8, 16.6, 0 ]
+                    data: [6, 7, 2, 3, 2, 1, 1, 1]
                 }],
                 chart: {
                     foreColor: '#9ba7b2',
                     type: 'bar',
-                    height: 260,
+                    height: 370,
                     stacked: false,
                     toolbar: {
                         show: false
@@ -45,7 +44,7 @@
                 },
                 plotOptions: {
                     bar: {
-                        horizontal: false,
+                        horizontal: true,
                         columnWidth: '45%',
                         endingShape: 'rounded'
                     },
@@ -69,13 +68,15 @@
                 yaxis: {
                     labels: {
                         formatter: function (value) {
-                            return value + " Days";
+                            return value ;
                         }
                     },
                 },
                 xaxis: {
-                    categories: ['Initial Check', 'Customer Document Upload', 'Expert Document Review', 'Document Approve', 'Final Check', 'Payment Start'],
-
+                    categories: ['Construction', 'Entertainment', 'Oil and Gas', 'Agriculture', 'Mining', 'IT', 'Food Services', 'Education'],
+                    labels: {
+                       
+                    },
                 },
                 grid: {
                     show: true,
@@ -89,13 +90,13 @@
                     theme: 'dark',
                     y: {
                         formatter: function (val) {
-                            return "" + val + " Days"
+                            return "" + val + " Requests"
                         }
                     }
                 }
             };
             console.log(widgetArea);
-            var chartArea = widgetArea.find('[data-wAverageStepTimes="main"]');
+            var chartArea = widgetArea.find('[data-w_topSectors="main"]');
             console.log(chartArea);
             var chart = new ApexCharts(chartArea[0], options);
             chart.render();
@@ -126,7 +127,7 @@
 
         function getTemplate() {
             var s = "";
-            s += '<div data-wAverageStepTimes="main"></div>'; 
+            s += '<div data-w_topSectors="main"></div>'; 
 
             s = minifyHtml(s);
 
@@ -154,9 +155,9 @@
 }(jQuery));
 
 
-dashboardWidgets["a5660356-2693-433f-8c66-a29d5c4a887c"] = {
+dashboardWidgets["98a06b79-102c-49ad-be92-fd8b484b2f17"] = {
     createWidget: function (item, config) {
-        return $(item).w_averageStepTimes({ widget: config });
+        return $(item).w_topSectors({ widget: config });
     }
 }
 
